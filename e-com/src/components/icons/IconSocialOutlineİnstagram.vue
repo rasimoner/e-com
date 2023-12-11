@@ -1,5 +1,5 @@
 <template>
-<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g>
 <rect id="Vector" x="2" y="2" width="20" height="20" rx="4" stroke="black" stroke-width="1.5"/>
 <circle id="Vector_2" cx="18" cy="6" r="1" fill="black"/>
