@@ -12,8 +12,8 @@
 
 - https://github.com/rasimoner/e-com
 - **Figma**
-    - https://www.figma.com/file/isz65h1LbmDdT4JivnzISa/E-commerce-web-%26-app-(Community)?node-id=0%3A1&mode=dev
-    - yedek içerik: https://www.figma.com/file/i9qjtJWVh3u1cHAGGK442Y/E-Ticaret-(Community)?node-id=3%3A2&mode=dev
+    - <b>Hidden</b>
+    - yedek içerik: <b>Hidden</b>
 
 ## **Hedefler**
 
@@ -80,14 +80,14 @@
 - [ ]  postcss
 - [x]  prettier
 - [ ]  JSX nedir?
-- [ ]  [icones.js.org](http://icones.js.org/) ikonları burda svg olacak.
+- [ ]  [icones.js.org](http://icones.js.org/)
 - [ ]  husky, commitlint
 
 ## **Notlar**
 
-![Untitled](e-com%20Projesi%20f137c83bc95949108bc4729282664b93/Untitled.png)
+<b>Hidden</b>
 
-## **Yararlı Linkler**
+## **Linkler**
 
 - [https://www.youtube.com/watch?v=qjch8tt7Vyk](https://www.youtube.com/watch?v=qjch8tt7Vyk)
 
