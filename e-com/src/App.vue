@@ -1,13 +1,9 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import NavigationBar from "./components/NavigationBar.vue";
+import { RouterView } from "vue-router";
+</script>
 
 <template>
-    <h1 class="text-3xl font-bold underline">
-        <FormKit
-            help="Enter mail address"
-            label="email"
-            prefix-icon="email"
-            type="email"
-            validation="required|email"
-        />
-    </h1>
+    <navigation-bar />
+    <router-view />
 </template>
