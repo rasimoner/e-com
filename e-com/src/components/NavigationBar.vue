@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import IconSearch from "./icons/IconSearch.vue";
-import IconIcUser from "./icons/IconIcUser.vue";
+import IconUser from "@/components/icons/IconUser.vue";
 import IconElementsNavigationIcShoppingBag from "./icons/IconElementsNavigationIcShoppingBag.vue";
 import ThemeSwitcher from "./ThemeSwitcher.vue";
 import { ref } from "vue";
@@ -64,7 +64,7 @@ const pageChanged = (page: SelectModel) => {
                 <icon-search class="dark:text-white text-black" />
             </div>
             <div class="w-6 h-6 relative">
-                <icon-ic-user class="dark:text-white text-black" />
+                <icon-user class="dark:text-white text-black" />
             </div>
             <div class="w-[50px] h-7 pl-px py-0.5 justify-center items-center gap-[5px] flex">
                 <div class="w-6 h-6 relative flex-col justify-start items-start flex">
