@@ -81,7 +81,7 @@ const pageChanged = (page: SelectModel) => {
         <div class="w-full py-4 border-t border-slate-600 justify-between items-start inline-flex">
             <div class="justify-start items-start gap-7 flex">
                 <div class="text-slate-400 text-[13px] font-normal font-['Inter']">
-                    Copyright © 2023 Iconic. All rights reserved
+                    Copyright © 2024 e-com. All rights reserved
                 </div>
                 <div class="text-slate-400 text-[13px] font-normal font-['Inter']">
                     Privacy Policy
