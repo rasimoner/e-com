@@ -10,6 +10,7 @@
 
 ## **Proje İçeriği**
 
+- https://fe-ecom.netlify.app/
 - https://github.com/rasimoner/e-com
 - **Figma**
     - <b>Hidden</b>
@@ -64,7 +65,8 @@
 ## **Geliştirme**
 
 - **Dikkat Edilecekler**
-    - Semantic commit messages([https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716)),
+    - Semantic commit
+      messages([https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716)),
     
 - **Adımlar**
     - [x]  github projesi oluştur,
