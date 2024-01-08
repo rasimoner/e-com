@@ -39,7 +39,7 @@ const pageChanged = (page: SelectModel) => {
     <div
         class="w-full justify-between items-center inline-flex fixed top-0 left-0 z-[2] bg-white dark:bg-gray-800 shadow"
     >
-        <div>
+        <div class="m-2">
             <icon-ecom class="dark:text-white text-black" />
         </div>
         <div class="justify-center items-center gap-10 flex">
