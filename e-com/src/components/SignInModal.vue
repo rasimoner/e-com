@@ -23,17 +23,18 @@ const pageChanged = (page: string) => {
 
 <template>
     <Dialog
+        :breakpoints="{ '1199px': '75vw', '575px': '90vw' }"
         :pt="{
             mask: {
                 style: 'backdrop-filter: blur(5px)',
             },
         }"
         :style="{ width: '50rem' }"
-        :update:visible="input"
         :visible="value"
         class="rounded-2xl"
-        header="Header"
+        dismissable-mask
         modal
+        @update:visible="input"
     >
         <template #container="{ closeCallback }">
             <div class="flex flex-col sm:flex-row" style="background: var(--body-bg)">
@@ -89,8 +90,8 @@ const pageChanged = (page: string) => {
                 <div class="flex-1 sm:order-2 order-1 h-full overflow-hidden">
                     <img
                         alt="login"
-                        src="../assets/images/login.png"
                         class="sm:w-full w-full h-full object-fill sm:max-h-full md:max-h-full"
+                        src="../assets/images/login.png"
                     />
                 </div>
             </div>
