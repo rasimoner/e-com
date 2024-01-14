@@ -37,8 +37,8 @@ const pageChanged = (page: string) => {
         modal
     >
         <template #container="{ closeCallback }">
-            <div class="flex" style="background: var(--body-bg)">
-                <div class="items-center content-center flex flex-1 px-8">
+            <div class="flex flex-col sm:flex-row" style="background: var(--body-bg)">
+                <div class="items-center justify-center flex flex-1 px-8 sm:order-1 order-2 my-10">
                     <FormKit type="form">
                         <div class="text-black dark:text-white text-4xl font-medium mb-3">
                             Log in
@@ -87,8 +87,12 @@ const pageChanged = (page: string) => {
                     </FormKit>
                 </div>
 
-                <div class="flex-1">
-                    <img alt="login" src="../assets/images/login.png" />
+                <div class="flex-1 sm:order-2 order-1 h-full overflow-hidden">
+                    <img
+                        alt="login"
+                        src="../assets/images/login.png"
+                        class="sm:w-full w-full h-full object-fill sm:max-h-full md:max-h-full"
+                    />
                 </div>
             </div>
         </template>
