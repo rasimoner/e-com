@@ -15,10 +15,9 @@ const password = ref("");
 
 const willPush = (page: string): boolean => router.currentRoute.value.name !== page;
 const pageChanged = (page: string) => {
-    if (willPush(page)) {
-        router.push({ name: page });
-        input(false);
-    }
+    if (willPush(page)) router.push({ name: page });
+
+    input(false);
 };
 </script>
 
