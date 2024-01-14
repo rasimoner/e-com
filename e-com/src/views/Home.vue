@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref } from "vue";
-import { AutoCompleteCompleteEvent } from "primevue/autocomplete";
+import { AutoCompleteCompleteEvent, AutoCompleteItemSelectEvent } from "primevue/autocomplete";
 import { useToast } from "primevue/usetoast";
 
 const value = ref("");
@@ -8,13 +8,23 @@ const date = ref("");
 const items = ref<string[]>([]);
 
 const toast = useToast();
-const visible = ref(false);
 
-const show = () => {
-    if (!visible.value) {
-        toast.add({ summary: "All changes saved", severity: "success" });
-        visible.value = true;
-    }
+const onDateChanged = () => {
+    if (!date.value) return;
+
+    toast.add({
+        severity: "success",
+        text: `${date.value} tarihi seçildi.`,
+        life: 1000,
+    });
+};
+
+const itemSelected = (event: AutoCompleteItemSelectEvent) => {
+    toast.add({
+        severity: "success",
+        text: `${event.value} seçildi.`,
+        life: 1000,
+    });
 };
 
 const search = (event: AutoCompleteCompleteEvent) => {
@@ -33,21 +43,28 @@ const search = (event: AutoCompleteCompleteEvent) => {
                 validation="required|email"
             />
         </h1>
-        <div>
-            <i class="pi pi-check text-green-500"></i>
-            <i class="pi pi-times text-red-500"></i>
-        </div>
-        <div>
-            <menubar />
-            <Button icon="pi pi-check" label="Check" />
-            <AutoComplete v-model="value" :suggestions="items" @complete="search" />
-            <calendar v-model="date" />
-            <Toast position="bottom-center" @close="visible = false">
+        <div class="pt-4">
+            <Button class="mx-2" icon="pi pi-check" label="Check" />
+            <AutoComplete
+                v-model="value"
+                :suggestions="items"
+                class="mx-2"
+                placeholder="Ara..."
+                @complete="search"
+                @item-select="itemSelected"
+            />
+            <calendar
+                v-model="date"
+                class="mx-2"
+                placeholder="Tarih Seçimi"
+                @date-select="onDateChanged"
+            />
+            <Toast position="bottom-center">
                 <template #container="{ message, closeCallback }">
                     <div class="flex items-center justify-between gap-8">
                         <span>{{ message.text }}</span>
                         <button
-                            class="px-4 py-2 rounded-lg text-primary-400 hover:bg-primary-500/20 dark:text-surface-700 dark:hover:bg-surface-200"
+                            class="rounded-lg text-primary-400 hover:bg-primary-500/20 dark:text-surface-700 dark:hover:bg-surface-200"
                             type="button"
                             @click="closeCallback"
                         >
