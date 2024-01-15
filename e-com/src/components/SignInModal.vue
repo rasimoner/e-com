@@ -12,12 +12,21 @@ const input = (value: boolean) => emit("input", value);
 
 const userName = ref("");
 const password = ref("");
+const rememberMe = ref(false);
+const passwordInputType = ref("password");
+const passwordInputSuffixIcon = ref("eyeClosed");
 
 const willPush = (page: string): boolean => router.currentRoute.value.name !== page;
 const pageChanged = (page: string) => {
     if (willPush(page)) router.push({ name: page });
 
     input(false);
+};
+
+const suffixIconClick = () => {
+    passwordInputType.value = passwordInputType.value === "password" ? "text" : "password";
+    passwordInputSuffixIcon.value =
+        passwordInputSuffixIcon.value === "eyeClosed" ? "eye" : "eyeClosed";
 };
 </script>
 
@@ -31,14 +40,13 @@ const pageChanged = (page: string) => {
         }"
         :style="{ width: '50rem' }"
         :visible="value"
-        class="rounded-2xl"
         dismissable-mask
         modal
         @update:visible="input"
     >
-        <template #container="{ closeCallback }">
+        <template #container>
             <div class="flex flex-col sm:flex-row" style="background: var(--body-bg)">
-                <div class="items-center justify-center flex flex-1 sm:order-1 order-2 my-10">
+                <div class="items-center justify-center px-8 flex flex-1 sm:order-1 order-2 my-5">
                     <FormKit type="form">
                         <div class="text-black dark:text-white text-4xl font-medium mb-3">
                             Log in
@@ -61,12 +69,29 @@ const pageChanged = (page: string) => {
                         />
                         <FormKit
                             v-model="password"
+                            :suffix-icon="passwordInputSuffixIcon"
+                            :type="passwordInputType"
                             class="w-full"
                             label="Password"
                             placeholder="Password"
-                            type="password"
+                            suffix-icon-class="hover:text-blue-500 hover:dark:text-white"
                             validation="required"
+                            @suffix-icon-click="suffixIconClick"
                         />
+                        <div class="flex flex-raw">
+                            <FormKit
+                                v-model="rememberMe"
+                                label="Remember me"
+                                name="terms"
+                                type="checkbox"
+                            />
+                            <div
+                                class="text-sm font-semibold leading-relaxed hover:cursor-pointer mb-1 text-black dark:text-white"
+                                @click="pageChanged('signUp')"
+                            >
+                                Forgot password?
+                            </div>
+                        </div>
 
                         <template #actions>
                             <div class="flex align-items-center gap-2">
@@ -76,21 +101,15 @@ const pageChanged = (page: string) => {
                                     type="submit"
                                     @submit="input(false)"
                                 />
-                                <Button
-                                    class="p-3 w-full text-primary-50 dark:text-white border border-surface-200 dark:border-surface-600"
-                                    label="Cancel"
-                                    text
-                                    @click="input(false)"
-                                />
                             </div>
                         </template>
                     </FormKit>
                 </div>
 
-                <div class="flex-1 max-h-96 sm:order-2 order-1 overflow-hidden">
+                <div class="items-center justify-center flex sm:order-2 order-1 sm:mt-0 mt-10">
                     <img
                         alt="login"
-                        class="sm:w-full w-full h-full object-fill sm:max-h-full md:max-h-full"
+                        class="max-w-[17rem] sm:max-w-md sm:order-2 order-1"
                         src="../assets/images/login.png"
                     />
                 </div>
