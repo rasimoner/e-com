@@ -2,9 +2,11 @@
 import { ref } from "vue";
 import { AutoCompleteCompleteEvent, AutoCompleteItemSelectEvent } from "primevue/autocomplete";
 import { useToast } from "primevue/usetoast";
+import SignInModal from "@/components/SignInModal.vue";
 
 const value = ref("");
 const date = ref("");
+const isSignInModalVisible = ref(false);
 const items = ref<string[]>([]);
 
 const toast = useToast();
@@ -30,6 +32,10 @@ const itemSelected = (event: AutoCompleteItemSelectEvent) => {
 const search = (event: AutoCompleteCompleteEvent) => {
     items.value = [...Array(10).keys()].map((item) => event.query + "-" + item);
 };
+
+const toggleSignInModal = (value: boolean) => {
+    isSignInModalVisible.value = value;
+};
 </script>
 
 <template>
@@ -44,7 +50,13 @@ const search = (event: AutoCompleteCompleteEvent) => {
             />
         </h1>
         <div class="pt-4">
-            <Button class="mx-2" icon="pi pi-check" label="Check" />
+            <Button
+                class="mx-2"
+                icon="pi pi-check"
+                label="Check"
+                @click="toggleSignInModal(true)"
+            />
+
             <AutoComplete
                 v-model="value"
                 :suggestions="items"
@@ -73,6 +85,11 @@ const search = (event: AutoCompleteCompleteEvent) => {
                     </div>
                 </template>
             </Toast>
+            <SignInModal
+                v-if="isSignInModalVisible"
+                v-model:value="isSignInModalVisible"
+                @input="toggleSignInModal(false)"
+            />
         </div>
     </div>
 </template>
