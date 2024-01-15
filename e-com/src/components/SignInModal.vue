@@ -109,7 +109,7 @@ const suffixIconClick = () => {
                 <div class="items-center justify-center flex sm:order-2 order-1 sm:mt-0 mt-10">
                     <img
                         alt="login"
-                        class="max-w-[17rem] sm:max-w-md sm:order-2 order-1"
+                        class="max-w-[18.5em] sm:max-w-md sm:order-2 order-1"
                         src="../assets/images/login.png"
                     />
                 </div>
