@@ -38,6 +38,7 @@ const pageList = ref<SelectModel[]>([
 ]);
 const signInModalVisible = ref(false);
 const isNavbarCollapsed = ref(true);
+const searchTerm = ref("");
 const willPush = (page: string): boolean => router.currentRoute.value.name !== page;
 const setIsNavbarCollapsed = () => (isNavbarCollapsed.value = true);
 const pageChanged = (page: string) => {
@@ -78,24 +79,46 @@ watch(
 <template>
     <div
         :class="[isNavbarCollapsed ? 'w-full' : 'h-full']"
-        class="navigation-bar w-auto md:w-full md:h-auto justify-between md:items-center fixed top-0 left-0 z-[2] md:px-0 px-6 bg-white dark:bg-gray-800 shadow flex md:flex-row flex-col"
+        class="navigation-bar min-w-[275px] md:w-full md:h-auto justify-between md:items-center fixed top-0 left-0 z-[2] md:px-0 px-2 bg-white dark:bg-gray-800 shadow flex md:flex-row flex-col"
         @click="handleOutsideClick"
     >
-        <span
-            class="absolute md:hidden right-6 top-1 cursor-pointer text-4xl"
-            @click="toggleNavbar()"
-        >
-            <i :class="[isNavbarCollapsed ? 'pi pi-bars' : 'pi pi-bars']"></i>
+        <span class="absolute md:hidden right-4 top-1 cursor-pointer pt-3" @click="toggleNavbar()">
+            <i :class="[isNavbarCollapsed ? 'pi pi-bars' : 'pi pi-bars']" />
         </span>
+        <ThemeSwitcher
+            :class="[isNavbarCollapsed ? 'right-20' : 'right-12']"
+            class="md:hidden absolute top-1"
+        />
+        <div :class="{ hidden: !isNavbarCollapsed }" class="md:hidden absolute right-8 top-4">
+            <div class="w-[50px] h-7 pl-px py-0.5 justify-center items-center gap-[5px] flex">
+                <div class="w-6 h-6 relative flex-col justify-start items-start flex">
+                    <icon-elements-navigation-ic-shopping-bag class="dark:text-white text-black" />
+                </div>
+                <div class="w-5 h-5 relative flex-col justify-start items-start flex">
+                    <div class="w-5 h-5 bg-black rounded-full"></div>
+                    <div
+                        class="text-center text-black text-[13px] font-normal font-['Inter'] dark:text-white"
+                    >
+                        2
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="m-2">
             <icon-ecom
                 class="dark:text-white text-black cursor-pointer hover:text-slate-700 hover:dark:text-slate-300"
                 @click="pageChanged('home')"
             />
         </div>
+        <div
+            :class="{ hidden: isNavbarCollapsed }"
+            class="md:hidden block text-black dark:text-white"
+        >
+            <FormKit v-model="searchTerm" placeholder="Search" type="search" />
+        </div>
         <ul
             :class="{ hidden: isNavbarCollapsed }"
-            class="md:flex md:items-center md:justify-center md:gap-10 md:px-0 px-10 md:pb-0 pb-10 md:static md:w-auto w-full flex-1 duration-700 ease-in"
+            class="md:flex md:items-center md:justify-center md:gap-10 md:px-0 px-3 md:pb-0 pb-10 md:static md:w-auto w-full flex-1 duration-700 ease-in"
         >
             <li
                 v-for="page in pageList"
@@ -114,19 +137,28 @@ watch(
         </ul>
         <div
             :class="{ hidden: isNavbarCollapsed }"
-            class="justify-end items-center gap-4 flex md:flex md:static"
+            class="md:justify-end justify-center items-center gap-4 flex md:flex md:static"
         >
-            <div class="w-6 h-6 relative">
+            <div class="w-6 h-6 relative md:block hidden">
                 <icon-search class="dark:text-white text-black" />
             </div>
-            <div class="w-6 h-6 relative" title="SignUp">
+            <div class="md:w-6 md:h-6 relative flex-1" title="SignUp">
                 <icon-user
-                    class="dark:text-white text-black hover:opacity-50 hover:cursor-pointer"
-                    title="SignUp"
+                    class="dark:text-white text-black hover:opacity-50 hover:cursor-pointer md:flex hidden"
+                    title="Sign Up"
                     @click="toggleSignInModal(true)"
                 />
+                <div class="md:hidden flex align-items-center gap-2">
+                    <Button
+                        class="p-3 w-full text-primary-50 dark:text-white border border-surface-200 dark:border-surface-600 mb-3"
+                        label="Sign Up"
+                        @click="toggleSignInModal(true)"
+                    />
+                </div>
             </div>
-            <div class="w-[50px] h-7 pl-px py-0.5 justify-center items-center gap-[5px] flex">
+            <div
+                class="w-[50px] h-7 pl-px py-0.5 justify-center items-center gap-[5px] md:flex hidden"
+            >
                 <div class="w-6 h-6 relative flex-col justify-start items-start flex">
                     <icon-elements-navigation-ic-shopping-bag class="dark:text-white text-black" />
                 </div>
@@ -139,7 +171,9 @@ watch(
                     </div>
                 </div>
             </div>
-            <ThemeSwitcher />
+            <div class="md:block hidden">
+                <ThemeSwitcher />
+            </div>
             <SignInModal
                 v-if="signInModalVisible"
                 v-model:value="signInModalVisible"
