@@ -1,7 +1,7 @@
 <template>
     <div class="flex justify-end p-2">
         <ul class="flex list-none m-0 p-0 gap-2 items-center">
-            <li>
+            <li class="relative">
                 <button
                     class="inline-flex border-1 w-8 h-8 p-0 items-center justify-center surface-0 dark:surface-800 border border-surface-200 dark:border-surface-600 rounded"
                     type="button"
