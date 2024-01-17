@@ -78,7 +78,11 @@ watch(
 
 <template>
     <div
-        :class="[isNavbarCollapsed ? 'w-full' : 'h-full']"
+        :class="[
+            isNavbarCollapsed
+                ? 'w-full min-h-0 transition-max-h ease-in duration-700'
+                : 'md:min-h-0 min-h-full transition-max-h ease-in duration-700',
+        ]"
         class="navigation-bar min-w-[275px] md:w-full md:h-auto justify-between md:items-center fixed top-0 left-0 z-[2] md:px-0 px-2 bg-white dark:bg-gray-800 shadow flex md:flex-row flex-col"
         @click="handleOutsideClick"
     >
