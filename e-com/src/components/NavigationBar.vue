@@ -12,6 +12,8 @@ import IconSocialOutlineInstagram from "@/components/icons/IconSocialOutlineİns
 import IconSocialOutlineYoutube from "@/components/icons/IconSocialOutlineYoutube.vue";
 import IconShoppingBag from "@/components/icons/IconShoppingBag.vue";
 import IconHeartLine from "@/components/icons/IconHeartLine.vue";
+import IconMenuLineHorizontal from "@/components/icons/IconMenuLineHorizontal.vue";
+import IconCloseLine from "@/components/icons/IconCloseLine.vue";
 
 const pageList = ref<SelectModel[]>([
     {
@@ -66,9 +68,10 @@ const setCurrentPageIsActive = () => {
 };
 const toggleNavbar = () => (isNavbarCollapsed.value = !isNavbarCollapsed.value);
 const handleOutsideClick = (event: MouseEvent) => {
-    const hasNavbar = (event.target as HTMLElement).closest(".navigation-bar");
+    if (isNavbarCollapsed.value) return;
 
-    if (!isNavbarCollapsed.value && !hasNavbar) setIsNavbarCollapsed();
+    const hasNavbar = (event.target as HTMLElement).closest(".navigation-bar");
+    if (!hasNavbar) setIsNavbarCollapsed();
 };
 onMounted(() => window.addEventListener("click", handleOutsideClick));
 watch(
@@ -88,7 +91,7 @@ watch(
                 : 'md:min-h-0 min-h-full transition-max-h ease-in duration-700',
         ]"
         class="navigation-bar min-w-[275px] md:w-full md:h-auto justify-between md:items-center fixed top-0 left-0 z-[2] md:px-0 px-2 bg-white dark:bg-gray-800 shadow flex md:flex-row flex-col"
-        @click="handleOutsideClick"
+        @click.stop="handleOutsideClick"
     >
         <div class="m-2 flex flex-row">
             <icon-ecom
@@ -96,8 +99,13 @@ watch(
                 @click="pageChanged('home')"
             />
             <ThemeSwitcher class="px-5 top-1" />
-            <span class="absolute md:hidden right-4 cursor-pointer pt-3" @click="toggleNavbar()">
-                <i :class="[isNavbarCollapsed ? 'pi pi-bars' : 'pi pi-times']" />
+            <span class="absolute md:hidden right-4 pt-3">
+                <IconMenuLineHorizontal
+                    v-if="isNavbarCollapsed"
+                    class="cursor-pointer"
+                    @click.stop="toggleNavbar()"
+                />
+                <IconCloseLine v-else class="cursor-pointer" @click.stop="toggleNavbar()" />
             </span>
         </div>
         <div
