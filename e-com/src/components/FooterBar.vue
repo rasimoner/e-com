@@ -1,85 +1,105 @@
 <script lang="ts" setup>
 import { SelectModel } from "../types";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import IconEcom from "./icons/IconEcom.vue";
 import IconSocialOutlineInstagram from "./icons/IconSocialOutlineİnstagram.vue";
 import IconSocialOutlineYoutube from "./icons/IconSocialOutlineYoutube.vue";
 import IconSocialOutlineFacebook from "./icons/IconSocialOutlineFacebook.vue";
+import { router } from "@/router";
 
 const pageList = ref<SelectModel[]>([
     {
         text: "Home",
-        value: "Home",
+        value: "home",
         selected: false,
     },
     {
         text: "Shop",
-        value: "Shop",
+        value: "shop",
         selected: false,
     },
     {
         text: "Product",
-        value: "Product",
+        value: "product",
         selected: false,
     },
     {
         text: "Contact Us",
-        value: "Contact",
+        value: "contact",
         selected: false,
     },
     {
-        text: "Blog",
-        value: "Blog",
+        text: "Sign Up",
+        value: "signUp",
         selected: false,
     },
 ]);
-const pageChanged = (page: SelectModel) => {
-    pageList.value.forEach((p) => (p.selected = false));
-    page.selected = true;
+const willPush = (page: string): boolean => router.currentRoute.value.name !== page;
+const pageChanged = (page: string) => {
+    if (willPush(page)) router.push({ name: page });
 };
+const setCurrentPageIsActive = () => {
+    pageList.value?.forEach(
+        (page: SelectModel) =>
+            (page.selected = page.value?.toString() === router.currentRoute.value.name),
+    );
+};
+watch(
+    () => router.currentRoute.value,
+    () => {
+        setCurrentPageIsActive();
+    },
+    { immediate: true },
+);
 </script>
 
 <template>
     <div
-        class="w-full h-72 px-16 pt-20 pb-8 flex-col justify-start items-start gap-10 inline-flex bottom-0 left-0"
+        class="w-full h-full pt-20 pb-8 flex-col justify-end items-start gap-10 inline-flex bottom-0 left-0 card"
     >
-        <div class="w-full justify-center items-center inline-flex">
-            <div class="grow shrink basis-0 self-stretch justify-between items-center inline-flex">
-                <div>
-                    <IconEcom class="text-black dark:text-white" />
-                </div>
-                <div class="h-6 justify-start items-center gap-8 flex">
-                    <div class="w-px h-6 bg-slate-600" />
-                    <div
-                        class="w-full text-black dark:text-white text-base font-normal font-['Inter'] leading-normal"
-                    >
-                        Design furniture Store
+        <div class="w-full justify-center items-center">
+            <div class="justify-between items-center md:flex gap-5">
+                <div class="grow shrink basis-0 items-center inline-flex">
+                    <div>
+                        <IconEcom
+                            class="text-black dark:text-white hover:text-slate-700 hover:dark:text-slate-300 cursor-pointer"
+                            @click="pageChanged('home')"
+                        />
                     </div>
-                </div>
-                <div class="justify-start items-start gap-10 flex">
-                    <div v-for="page in pageList" class="justify-start items-center gap-0.5 flex">
-                        <div class="border-gray-200 justify-start items-center gap-0.5 flex">
-                            <div class="justify-start items-center gap-1 flex">
-                                <button
-                                    :class="
-                                        page.selected
-                                            ? 'text-black dark:text-white'
-                                            : 'text-slate-400'
-                                    "
-                                    class="text-base font-normal font-['Inter'] leading-normal"
-                                    type="button"
-                                    @click="pageChanged(page)"
-                                >
-                                    {{ page.text }}
-                                </button>
-                            </div>
+                    <div class="h-6 justify-start items-center gap-8 flex">
+                        <div class="w-px h-6 bg-slate-600" />
+                        <div
+                            class="w-full text-black dark:text-white text-base font-normal font-['Inter'] leading-normal"
+                        >
+                            Design furniture Store
                         </div>
                     </div>
                 </div>
+
+                <ul
+                    class="md:flex md:items-center md:justify-center md:gap-10 md:px-0 px-3 md:pb-0 pb-10 md:static md:w-auto w-full flex-1"
+                >
+                    <li
+                        v-for="page in pageList"
+                        :class="page.selected ? 'border-black' : 'border-slate-400'"
+                        class="justify-start items-center gap-0.5 my-6 flex"
+                    >
+                        <button
+                            :class="page.selected ? 'text-black dark:text-white' : 'text-slate-400'"
+                            class="text-base font-normal font-['Inter'] leading-normal hover:text-slate-700 hover:dark:text-slate-300"
+                            type="button"
+                            @click="pageChanged(`${page.value}`)"
+                        >
+                            {{ page.text }}
+                        </button>
+                    </li>
+                </ul>
             </div>
         </div>
-        <div class="w-full py-4 border-t border-slate-600 justify-between items-start inline-flex">
-            <div class="justify-start items-start gap-7 flex">
+        <div
+            class="w-full py-4 border-t border-slate-600 justify-between items-start flex md:flex-row flex-col"
+        >
+            <div class="justify-start items-start gap-7 flex md:flex-row flex-col">
                 <div class="text-slate-400 text-[13px] font-normal font-['Inter']">
                     Copyright © 2024 e-com. All rights reserved
                 </div>
@@ -90,15 +110,24 @@ const pageChanged = (page: SelectModel) => {
                     Terms of Use
                 </div>
             </div>
-            <div class="justify-start items-start gap-6 flex">
+            <div class="justify-start items-start gap-6 flex md:p-0 pt-3">
                 <div class="w-6 h-6 relative">
-                    <icon-social-outline-instagram />
+                    <icon-social-outline-instagram
+                        class="text-black dark:text-white hover:text-slate-700 hover:dark:text-slate-300 cursor-pointer"
+                        @click="pageChanged('home')"
+                    />
                 </div>
                 <div class="w-6 h-6 relative">
-                    <icon-social-outline-youtube />
+                    <icon-social-outline-youtube
+                        class="text-black dark:text-white hover:text-slate-700 hover:dark:text-slate-300 cursor-pointer"
+                        @click="pageChanged('home')"
+                    />
                 </div>
                 <div class="w-6 h-6 relative">
-                    <icon-social-outline-facebook />
+                    <icon-social-outline-facebook
+                        class="text-black dark:text-white hover:text-slate-700 hover:dark:text-slate-300 cursor-pointer"
+                        @click="pageChanged('home')"
+                    />
                 </div>
             </div>
         </div>

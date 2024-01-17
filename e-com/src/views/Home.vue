@@ -39,8 +39,8 @@ const toggleSignInModal = (value: boolean) => {
 </script>
 
 <template>
-    <div class="card flex justify-center">
-        <h1 class="text-3xl font-bold underline">
+    <div class="card flex">
+        <div class="pt-4 flex flex-col">
             <FormKit
                 help="Enter mail address"
                 label="email"
@@ -48,29 +48,20 @@ const toggleSignInModal = (value: boolean) => {
                 type="email"
                 validation="required|email"
             />
-        </h1>
-        <div class="pt-4">
-            <Button
-                class="mx-2"
-                icon="pi pi-check"
-                label="Check"
-                @click="toggleSignInModal(true)"
-            />
-
             <AutoComplete
                 v-model="value"
                 :suggestions="items"
-                class="mx-2"
                 placeholder="Ara..."
                 @complete="search"
                 @item-select="itemSelected"
             />
             <calendar
                 v-model="date"
-                class="mx-2"
+                class="my-2"
                 placeholder="Tarih Seçimi"
                 @date-select="onDateChanged"
             />
+            <Button icon="pi pi-check" label="Check" @click="toggleSignInModal(true)" />
             <Toast position="bottom-center">
                 <template #container="{ message, closeCallback }">
                     <div class="flex items-center justify-between gap-8">
