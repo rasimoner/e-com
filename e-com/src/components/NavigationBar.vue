@@ -48,10 +48,7 @@ const searchTerm = ref("");
 const willPush = (page: string): boolean => router.currentRoute.value.name !== page;
 const setIsNavbarCollapsed = () => (isNavbarCollapsed.value = true);
 const pageChanged = (page: string) => {
-    if (willPush(page))
-        router.push({
-            name: page,
-        });
+    if (willPush(page)) router.push({ name: page });
 
     setIsNavbarCollapsed();
 };
