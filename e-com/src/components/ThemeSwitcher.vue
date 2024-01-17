@@ -41,7 +41,6 @@ const setSystemTheme = () => {
     const root = document.getElementsByTagName("html")[0];
     if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
         root.classList.toggle("dark");
-        console.log("1", root.classList);
         iconClass.value = iconClass.value === "pi-moon" ? "pi-sun" : "pi-moon";
     }
 };
@@ -51,7 +50,6 @@ const onThemeToggler = () => {
     const root = document.getElementsByTagName("html")[0];
 
     root.classList.toggle("dark");
-    console.log("2", root.classList);
     iconClass.value = iconClass.value === "pi-moon" ? "pi-sun" : "pi-moon";
 };
 </script>
