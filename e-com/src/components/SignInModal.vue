@@ -84,7 +84,6 @@ const hint = computed(() => {
                             type="email"
                             label="Email"
                             validation="required|email|ends_with:.com"
-                            validation-visibility="live"
                             placeholder="vikas@gmail.com"
                             class="w-full"
                         />
@@ -122,8 +121,12 @@ const hint = computed(() => {
                             >
                                 <template #label>
                                     <span class="pt-5">
-                                        I agree with <a><strong>Privacy Policy</strong></a> and
-                                        <a><b>Terms of Use</b></a>
+                                        I agree with
+                                        <a class="cursor-pointer"
+                                            ><strong>Privacy Policy</strong></a
+                                        >
+                                        and
+                                        <a class="cursor-pointer"><b>Terms of Use</b></a>
                                     </span>
                                 </template>
                             </FormKit>
