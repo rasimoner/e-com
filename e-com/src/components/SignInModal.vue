@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { router } from "@/router";
 
 const props = defineProps<{
@@ -31,6 +31,14 @@ const suffixIconClick = () => {
     passwordInputSuffixIcon.value =
         passwordInputSuffixIcon.value === "eyeClosed" ? "eye" : "eyeClosed";
 };
+
+const title = computed(() => {
+    return hasAccount.value ? "Login" : "Sing Up";
+});
+
+const hint = computed(() => {
+    return hasAccount.value ? "Don’t have an account yet" : "Already have an account?";
+});
 </script>
 
 <template>
@@ -52,20 +60,16 @@ const suffixIconClick = () => {
                 <div class="items-center justify-center px-8 flex flex-1 sm:order-1 order-2 my-5">
                     <FormKit type="form">
                         <div class="text-black dark:text-white text-4xl font-medium mb-3">
-                            {{ hasAccount ? "Login" : "Sing Up" }}
+                            {{ title }}
                         </div>
                         <div class="pb-3">
                             <span class="text-black dark:text-white text-base leading-relaxed"
-                                >{{
-                                    hasAccount
-                                        ? "Don’t have an account yet"
-                                        : "Already have an account?"
-                                }}
+                                >{{ hint }}
                             </span>
                             <a
                                 class="text-emerald-400 text-base font-semibold leading-relaxed hover:cursor-pointer"
                                 @click="pageChanged('signUp')"
-                                >{{ !hasAccount ? "Login" : "Sing Up" }}</a
+                                >{{ title }}</a
                             >
                         </div>
                         <FormKit
@@ -129,7 +133,7 @@ const suffixIconClick = () => {
                             <div class="flex align-items-center gap-2">
                                 <Button
                                     class="p-3 w-full text-primary-50 dark:text-white border border-surface-200 dark:border-surface-600"
-                                    :label="hasAccount ? 'Sign-In' : 'Sign Up'"
+                                    :label="title"
                                     type="submit"
                                     @submit="input(false)"
                                 />
