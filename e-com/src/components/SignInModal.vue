@@ -84,7 +84,6 @@ const hint = computed(() => {
                             type="email"
                             label="Email"
                             validation="required|email|ends_with:.com"
-                            validation-visibility="live"
                             placeholder="vikas@gmail.com"
                             class="w-full"
                         />
