@@ -6,9 +6,4 @@ export const routes: RouteRecordRaw[] = [
         name: "home",
         component: () => import("../views/Home.vue"),
     },
-    {
-        path: "/signUp",
-        name: "signUp",
-        component: () => import("../views/SignUp.vue"),
-    },
 ];

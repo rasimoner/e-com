@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { computed, ref } from "vue";
-import { router } from "@/router";
 
 const props = defineProps<{
     value: boolean;
@@ -19,13 +18,6 @@ const agreeCondition = ref(false);
 const passwordInputType = ref("password");
 const passwordInputSuffixIcon = ref("eyeClosed");
 
-const willPush = (page: string): boolean => router.currentRoute.value.name !== page;
-const pageChanged = (page: string) => {
-    if (willPush(page)) router.push({ name: page });
-
-    input(false);
-};
-
 const suffixIconClick = () => {
     passwordInputType.value = passwordInputType.value === "password" ? "text" : "password";
     passwordInputSuffixIcon.value =
@@ -39,6 +31,8 @@ const title = computed(() => {
 const hint = computed(() => {
     return hasAccount.value ? "Don’t have an account yet" : "Already have an account?";
 });
+
+const toggleHasAccount = () => (hasAccount.value = !hasAccount.value);
 </script>
 
 <template>
@@ -68,7 +62,7 @@ const hint = computed(() => {
                             </span>
                             <a
                                 class="text-emerald-400 text-base font-semibold leading-relaxed hover:cursor-pointer"
-                                @click="pageChanged('signUp')"
+                                @click="toggleHasAccount"
                                 >{{ title }}</a
                             >
                         </div>
@@ -81,11 +75,11 @@ const hint = computed(() => {
                         />
                         <FormKit
                             v-model="email"
-                            type="email"
-                            label="Email"
-                            validation="required|email|ends_with:.com"
-                            placeholder="vikas@gmail.com"
                             class="w-full"
+                            label="Email"
+                            placeholder="vikas@gmail.com"
+                            type="email"
+                            validation="required|email|ends_with:.com"
                         />
                         <FormKit
                             v-model="password"
@@ -107,7 +101,7 @@ const hint = computed(() => {
                             />
                             <div
                                 class="text-sm font-semibold leading-relaxed hover:cursor-pointer mb-1 text-black dark:text-white"
-                                @click="pageChanged('signUp')"
+                                @click="toggleHasAccount"
                             >
                                 Forgot password?
                             </div>
@@ -115,9 +109,9 @@ const hint = computed(() => {
                         <div v-else>
                             <FormKit
                                 v-model="agreeCondition"
-                                validation="accepted"
                                 name="terms"
                                 type="checkbox"
+                                validation="accepted"
                             >
                                 <template #label>
                                     <span class="pt-5">
@@ -135,8 +129,8 @@ const hint = computed(() => {
                         <template #actions>
                             <div class="flex align-items-center gap-2">
                                 <Button
-                                    class="p-3 w-full text-primary-50 dark:text-white border border-surface-200 dark:border-surface-600"
                                     :label="title"
+                                    class="p-3 w-full text-primary-50 dark:text-white border border-surface-200 dark:border-surface-600"
                                     type="submit"
                                     @submit="input(false)"
                                 />
