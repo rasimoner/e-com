@@ -28,11 +28,6 @@ const pageList = ref<SelectModel[]>([
         value: "contact",
         selected: false,
     },
-    {
-        text: "Sign Up",
-        value: "signUp",
-        selected: false,
-    },
 ]);
 const willPush = (page: string): boolean => router.currentRoute.value.name !== page;
 const pageChanged = (page: string) => {

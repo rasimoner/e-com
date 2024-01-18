@@ -36,11 +36,6 @@ const pageList = ref<SelectModel[]>([
         value: "contact",
         selected: false,
     },
-    {
-        text: "Sign Up",
-        value: "signUp",
-        selected: false,
-    },
 ]);
 const signInModalVisible = ref(false);
 const isNavbarCollapsed = ref(true);
