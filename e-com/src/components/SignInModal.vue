@@ -10,9 +10,12 @@ const emit = defineEmits<{
 }>();
 const input = (value: boolean) => emit("input", value);
 
+const email = ref("");
 const userName = ref("");
 const password = ref("");
+const hasAccount = ref(false);
 const rememberMe = ref(false);
+const agreeCondition = ref(false);
 const passwordInputType = ref("password");
 const passwordInputSuffixIcon = ref("eyeClosed");
 
@@ -49,23 +52,37 @@ const suffixIconClick = () => {
                 <div class="items-center justify-center px-8 flex flex-1 sm:order-1 order-2 my-5">
                     <FormKit type="form">
                         <div class="text-black dark:text-white text-4xl font-medium mb-3">
-                            Log in
+                            {{ hasAccount ? "Login" : "Sing Up" }}
                         </div>
                         <div class="pb-3">
                             <span class="text-black dark:text-white text-base leading-relaxed"
-                                >Don’t have an accout yet?
+                                >{{
+                                    hasAccount
+                                        ? "Don’t have an account yet"
+                                        : "Already have an account?"
+                                }}
                             </span>
                             <a
                                 class="text-emerald-400 text-base font-semibold leading-relaxed hover:cursor-pointer"
                                 @click="pageChanged('signUp')"
-                                >Sign Up</a
+                                >{{ !hasAccount ? "Login" : "Sing Up" }}</a
                             >
                         </div>
                         <FormKit
+                            v-if="!hasAccount"
                             v-model="userName"
                             class="w-full"
-                            label="UserName"
-                            placeholder="UserName"
+                            label="Username"
+                            placeholder="Username"
+                        />
+                        <FormKit
+                            v-model="email"
+                            type="email"
+                            label="Email"
+                            validation="required|email|ends_with:.com"
+                            validation-visibility="live"
+                            placeholder="vikas@gmail.com"
+                            class="w-full"
                         />
                         <FormKit
                             v-model="password"
@@ -78,7 +95,7 @@ const suffixIconClick = () => {
                             validation="required"
                             @suffix-icon-click="suffixIconClick"
                         />
-                        <div class="flex flex-raw">
+                        <div v-if="hasAccount" class="flex flex-raw">
                             <FormKit
                                 v-model="rememberMe"
                                 label="Remember me"
@@ -92,12 +109,27 @@ const suffixIconClick = () => {
                                 Forgot password?
                             </div>
                         </div>
+                        <div v-else>
+                            <FormKit
+                                v-model="agreeCondition"
+                                validation="accepted"
+                                name="terms"
+                                type="checkbox"
+                            >
+                                <template #label>
+                                    <span class="pt-5">
+                                        I agree with <a><strong>Privacy Policy</strong></a> and
+                                        <a><b>Terms of Use</b></a>
+                                    </span>
+                                </template>
+                            </FormKit>
+                        </div>
 
                         <template #actions>
                             <div class="flex align-items-center gap-2">
                                 <Button
                                     class="p-3 w-full text-primary-50 dark:text-white border border-surface-200 dark:border-surface-600"
-                                    label="Sign-In"
+                                    :label="hasAccount ? 'Sign-In' : 'Sign Up'"
                                     type="submit"
                                     @submit="input(false)"
                                 />
