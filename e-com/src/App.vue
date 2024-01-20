@@ -2,11 +2,13 @@
 import NavigationBar from "./components/NavigationBar.vue";
 import { RouterView } from "vue-router";
 import FooterBar from "./components/FooterBar.vue";
+import Newsletter from "@/components/Newsletter.vue";
 </script>
 
 <template>
-    <navigation-bar />
+    <NavigationBar />
     <span class="mt-60" />
-    <router-view />
-    <footer-bar />
+    <RouterView />
+    <Newsletter />
+    <FooterBar />
 </template>
