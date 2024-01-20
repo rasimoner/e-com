@@ -23,6 +23,8 @@ const suffixIconClick = () => {
     passwordInputSuffixIcon.value =
         passwordInputSuffixIcon.value === "eyeClosed" ? "eye" : "eyeClosed";
 };
+const redirectToPrivacyPolicy = () => {};
+const redirectToTermsOfUse = () => {};
 
 const title = computed(() => (hasAccount.value ? "Login" : "Sing Up"));
 const hintButton = computed(() => (!hasAccount.value ? "Login" : "Sing Up"));
@@ -81,7 +83,7 @@ const toggleHasAccount = () => (hasAccount.value = !hasAccount.value);
                             v-model="email"
                             class="w-full"
                             label="Email"
-                            placeholder="vikas@gmail.com"
+                            placeholder="test@gmail.com"
                             type="email"
                             validation="required|email|ends_with:.com"
                         />
@@ -121,10 +123,16 @@ const toggleHasAccount = () => (hasAccount.value = !hasAccount.value);
                                     <span class="pt-5">
                                         I agree with
                                         <a class="cursor-pointer"
-                                            ><strong>Privacy Policy</strong></a
+                                            ><strong @click.prevent="redirectToPrivacyPolicy"
+                                                >Privacy Policy</strong
+                                            ></a
                                         >
                                         and
-                                        <a class="cursor-pointer"><b>Terms of Use</b></a>
+                                        <a
+                                            class="cursor-pointer"
+                                            @click.prevent="redirectToTermsOfUse"
+                                            ><b>Terms of Use</b></a
+                                        >
                                     </span>
                                 </template>
                             </FormKit>
