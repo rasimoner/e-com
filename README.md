@@ -50,14 +50,14 @@
 ## **Sayfalar**
 
 - **Faz-1**
-    - [ ]  Login ekranı
+    - [x]  Login ekranı
     - [ ]  Anasayfa
     - [ ]  Hakkımızda sayfası
     - [ ]  Ürün sepeti
     - [ ]  Ürün sayfası, yorumlar
     - [ ]  Profil
-    - [ ]  Sol ve üst navbar
-    - [ ]  Footer
+    - [x]  Sol ve üst navbar
+    - [x]  Footer
 - **Faz-2**
     - [ ]  Yönetim Paneli
     - [ ]  vitePress dokümantasyon projesi
