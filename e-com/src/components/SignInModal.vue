@@ -24,13 +24,11 @@ const suffixIconClick = () => {
         passwordInputSuffixIcon.value === "eyeClosed" ? "eye" : "eyeClosed";
 };
 
-const title = computed(() => {
-    return hasAccount.value ? "Login" : "Sing Up";
-});
-
-const hint = computed(() => {
-    return hasAccount.value ? "Don’t have an account yet" : "Already have an account?";
-});
+const title = computed(() => (hasAccount.value ? "Login" : "Sing Up"));
+const hintButton = computed(() => (!hasAccount.value ? "Login" : "Sing Up"));
+const hint = computed(() =>
+    hasAccount.value ? "Don’t have an account yet" : "Already have an account?",
+);
 
 const toggleHasAccount = () => (hasAccount.value = !hasAccount.value);
 </script>
@@ -50,21 +48,27 @@ const toggleHasAccount = () => (hasAccount.value = !hasAccount.value);
         @update:visible="input"
     >
         <template #container>
-            <div class="flex flex-col sm:flex-row" style="background: var(--body-bg)">
-                <div class="items-center justify-center px-8 flex flex-1 sm:order-1 order-2 my-5">
+            <div
+                class="flex flex-col md:flex-row max-h-[90vh] overflow-y-auto"
+                style="background: var(--body-bg)"
+            >
+                <div class="items-center justify-center px-8 flex flex-1 md:order-1 order-2 my-5">
                     <FormKit type="form">
-                        <div class="text-black dark:text-white text-4xl font-medium mb-3">
+                        <div
+                            class="text-black dark:text-white text-4xl font-medium mb-3 flex justify-center"
+                        >
                             {{ title }}
                         </div>
-                        <div class="pb-3">
-                            <span class="text-black dark:text-white text-base leading-relaxed"
-                                >{{ hint }}
+                        <div class="pb-3 flex justify-center">
+                            <span class="text-black dark:text-white text-base leading-relaxed">
+                                {{ hint }}
                             </span>
                             <a
-                                class="text-emerald-400 text-base font-semibold leading-relaxed hover:cursor-pointer"
+                                class="text-emerald-400 text-base font-semibold leading-relaxed hover:cursor-pointer pt-0"
                                 @click="toggleHasAccount"
-                                >{{ title }}</a
                             >
+                                {{ hintButton }}
+                            </a>
                         </div>
                         <FormKit
                             v-if="!hasAccount"
@@ -138,11 +142,10 @@ const toggleHasAccount = () => (hasAccount.value = !hasAccount.value);
                         </template>
                     </FormKit>
                 </div>
-
-                <div class="items-center justify-center flex sm:order-2 order-1 sm:mt-0 mt-10">
+                <div class="items-center justify-center flex md:order-2 order-1 md:mt-0 mt-8">
                     <img
                         alt="login"
-                        class="max-w-[18.5em] sm:max-w-md sm:order-2 order-1"
+                        class="max-w-[15em] md:max-w-md md:order-2 order-1"
                         src="../assets/images/login.png"
                     />
                 </div>
