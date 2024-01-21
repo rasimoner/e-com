@@ -31,7 +31,7 @@
 - [x]  vue 3
 - [x]  typescript,
 - [x]  tailwind-css
-- [ ]  primeVue (biklinik ui paketi incelemesi)
+- [x]  primeVue (biklinik ui paketi incelemesi)
 - [ ]  pinia
 - [x]  ESLint
 - [x]  prettier
