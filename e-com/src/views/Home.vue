@@ -16,7 +16,7 @@ const onDateChanged = () => {
 
     toast.add({
         severity: "success",
-        text: `${date.value} tarihi seçildi.`,
+        detail: `${date.value} tarihi seçildi.`,
         life: 1000,
     });
 };
@@ -24,7 +24,7 @@ const onDateChanged = () => {
 const itemSelected = (event: AutoCompleteItemSelectEvent) => {
     toast.add({
         severity: "success",
-        text: `${event.value} seçildi.`,
+        detail: `${event.value} seçildi.`,
         life: 1000,
     });
 };
@@ -62,7 +62,7 @@ const toggleSignInModal = (value: boolean) => {
                 @date-select="onDateChanged"
             />
             <Button icon="pi pi-check" label="Check" @click="toggleSignInModal(true)" />
-            <Toast position="bottom-center">
+            <Toast>
                 <template #container="{ message, closeCallback }">
                     <div class="flex items-center justify-between gap-8">
                         <span>{{ message.text }}</span>

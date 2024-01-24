@@ -7,15 +7,18 @@ import ThemeSwitcher from "./ThemeSwitcher.vue";
 import { SelectModel } from "@/types";
 import IconEcom from "./icons/IconEcom.vue";
 import SignInModal from "@/components/SignInModal.vue";
-import IconSocialOutlineFacebook from "@/components/icons/IconSocialOutlineFacebook.vue";
-import IconSocialOutlineInstagram from "@/components/icons/IconSocialOutlineİnstagram.vue";
-import IconSocialOutlineYoutube from "@/components/icons/IconSocialOutlineYoutube.vue";
+import IconSocialFacebook from "@/components/icons/IconSocialFacebook.vue";
+import IconSocialInstagram from "@/components/icons/IconSocialInstagram.vue";
+import IconSocialYoutube from "@/components/icons/IconSocialYoutube.vue";
 import IconShoppingBag from "@/components/icons/IconShoppingBag.vue";
-import IconHeartLine from "@/components/icons/IconHeartLine.vue";
-import IconMenuLineHorizontal from "@/components/icons/IconMenuLineHorizontal.vue";
-import IconCloseLine from "@/components/icons/IconCloseLine.vue";
+import IconHeart from "@/components/icons/IconHeart.vue";
+import IconMenu from "@/components/icons/IconMenu.vue";
+import IconClose from "@/components/icons/IconClose.vue";
 import { userModule } from "@/store";
+import { useToast } from "primevue/usetoast";
+import { ToastMessageOptions } from "primevue/toast";
 
+const toast = useToast();
 const pageList = ref<SelectModel[]>([
     {
         text: "Home",
@@ -38,9 +41,11 @@ const pageList = ref<SelectModel[]>([
         selected: false,
     },
 ]);
-const signInModalVisible = ref(false);
-const isNavbarCollapsed = ref(true);
 const searchTerm = ref("");
+const isNavbarCollapsed = ref(true);
+const isSignInModalVisible = ref(false);
+const isWishListModalVisible = ref(false);
+const isCartModalVisible = ref(false);
 
 const willPush = (page: string): boolean => router.currentRoute.value.name !== page;
 const setIsNavbarCollapsed = () => (isNavbarCollapsed.value = true);
@@ -49,9 +54,19 @@ const pageChanged = (page: string) => {
 
     setIsNavbarCollapsed();
 };
+const showToast = (options: ToastMessageOptions) => toast.add(options);
+
+const toggleWishListModal = (value: boolean) => (isWishListModalVisible.value = value);
+const toggleCartModal = (value: boolean) => (isCartModalVisible.value = value);
+const openInstagram = () => {};
+const openFacebook = () => {};
+const openYoutube = () => {};
+const show = () => {
+    toast.add({ severity: "info", summary: "Info", detail: "Message Content", life: 3000 });
+};
 
 const toggleSignInModal = (value: boolean) => {
-    signInModalVisible.value = value;
+    isSignInModalVisible.value = value;
     if (value) setIsNavbarCollapsed();
 };
 const setCurrentPageIsActive = () => {
@@ -96,12 +111,12 @@ watch(
             />
             <ThemeSwitcher class="px-5 top-1" />
             <span class="absolute md:hidden right-4 pt-3">
-                <IconMenuLineHorizontal
+                <IconMenu
                     v-if="isNavbarCollapsed"
                     class="cursor-pointer"
                     @click.stop="toggleNavbar()"
                 />
-                <IconCloseLine v-else class="cursor-pointer" @click.stop="toggleNavbar()" />
+                <IconClose v-else class="cursor-pointer" @click.stop="toggleNavbar()" />
             </span>
         </div>
         <div
@@ -139,7 +154,7 @@ watch(
             <div class="md:flex md:flex-row flex-col flex-1 px-3">
                 <div
                     class="md:w-[50px] md:h-7 md:pl-px md:py-0.5 md:justify-center justify-between items-center gap-[5px] flex flex-row my-2 border-b md:border-none border-slate-200 dark:border-slate-700 cursor-pointer hover:opacity-50"
-                    @click="toggleSignInModal(true)"
+                    @click="toggleCartModal(true)"
                 >
                     <div
                         class="md:hidden flex-1 text-slate-400 text-base font-normal font-['Inter'] leading-normal"
@@ -160,7 +175,7 @@ watch(
                 </div>
                 <div
                     class="md:hidden justify-between items-center gap-[5px] flex flex-row my-2 border-b border-slate-200 dark:border-slate-700 dark:text-white text-black hover:opacity-50 cursor-pointer"
-                    @click="toggleSignInModal(true)"
+                    @click="toggleWishListModal(true)"
                 >
                     <div
                         class="md:hidden flex-1 text-slate-400 text-base font-normal font-['Inter'] leading-normal"
@@ -168,7 +183,7 @@ watch(
                         Wish List
                     </div>
                     <div class="md:w-6 md:h-6 relative flex-col justify-start items-start flex">
-                        <IconHeartLine class="dark:text-white text-black" />
+                        <IconHeart class="dark:text-white text-black" />
                     </div>
                     <div class="md:w-5 md:h-5 relative flex-col justify-start items-start flex">
                         <div class="md:w-5 md:h-5 md:bg-black rounded-full"></div>
@@ -198,26 +213,28 @@ watch(
                     </div>
                 </div>
                 <div class="md:hidden flex gap-5 pb-3">
-                    <IconSocialOutlineInstagram
+                    <IconSocialInstagram
                         class="cursor-pointer hover:opacity-50"
-                        @click="toggleSignInModal(true)"
+                        @click="openInstagram()"
                     />
-                    <IconSocialOutlineFacebook
+                    <IconSocialFacebook
                         class="cursor-pointer hover:opacity-50"
-                        @click="toggleSignInModal(true)"
+                        @click="openFacebook()"
                     />
-                    <IconSocialOutlineYoutube
+                    <IconSocialYoutube
                         class="cursor-pointer hover:opacity-50"
-                        @click="toggleSignInModal(true)"
+                        @click="openYoutube()"
                     />
                 </div>
             </div>
 
             <SignInModal
-                v-if="signInModalVisible"
-                v-model:value="signInModalVisible"
+                v-if="isSignInModalVisible"
+                v-model:value="isSignInModalVisible"
                 @input="toggleSignInModal(false)"
+                @onShowToast="showToast"
             />
+            <Toast />
         </div>
     </div>
 </template>

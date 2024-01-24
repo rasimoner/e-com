@@ -1,31 +1,32 @@
 <script lang="ts" setup>
 import { computed, ref } from "vue";
-import { UserModel } from "@/types";
+import { EnumToastSeverity, UserModel } from "@/types";
 import { authService } from "@/api/firebase/auth-service";
 import { userModule } from "@/store";
 import { User } from "firebase/auth";
+import { ToastMessageOptions } from "primevue/toast";
 
-const props = defineProps<{
+defineProps<{
     value: boolean;
 }>();
 const emit = defineEmits<{
     (event: "input", value: boolean): void;
+    (event: "onShowToast", value: ToastMessageOptions): void;
 }>();
 
 const input = (value: boolean) => emit("input", value);
+const onShowToast = (value: ToastMessageOptions) => emit("onShowToast", value);
 
 const userModel = ref<UserModel>({
     userName: "",
     email: "",
     password: "",
 });
-
 const hasAccount = ref(false);
 const rememberMe = ref(false);
 const agreeCondition = ref(false);
 const passwordInputType = ref("password");
 const passwordInputSuffixIcon = ref("eyeClosed");
-
 const suffixIconClick = () => {
     passwordInputType.value = passwordInputType.value === "password" ? "text" : "password";
     passwordInputSuffixIcon.value =
@@ -41,6 +42,12 @@ const createUser = async () => {
     if (!res?.user) return;
 
     setCurrentUser(res.user);
+    onShowToast({
+        severity: EnumToastSeverity.Success,
+        summary: "İşlem Başarılı",
+        detail: "Kullanıcı Oluşturuldu",
+        life: 3000,
+    });
     input(false);
 };
 
@@ -49,6 +56,13 @@ const getUser = async () => {
     if (!res) return;
 
     setCurrentUser(res.user);
+    onShowToast({
+        severity: EnumToastSeverity.Success,
+        summary: "İşlem Başarılı",
+        detail: "Giriş Yapıldı",
+        life: 3000,
+    });
+
     input(false);
 };
 
