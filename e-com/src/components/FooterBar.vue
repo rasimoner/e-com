@@ -2,9 +2,9 @@
 import { SelectModel } from "@/types/select-model";
 import { ref, watch } from "vue";
 import IconEcom from "./icons/IconEcom.vue";
-import IconSocialOutlineInstagram from "./icons/IconSocialOutlineİnstagram.vue";
-import IconSocialOutlineYoutube from "./icons/IconSocialOutlineYoutube.vue";
-import IconSocialOutlineFacebook from "./icons/IconSocialOutlineFacebook.vue";
+import IconSocialInstagram from "@/components/icons/IconSocialInstagram.vue";
+import IconSocialYoutube from "@/components/icons/IconSocialYoutube.vue";
+import IconSocialFacebook from "@/components/icons/IconSocialFacebook.vue";
 import { router } from "@/router";
 
 const pageList = ref<SelectModel[]>([
@@ -107,19 +107,19 @@ watch(
             </div>
             <div class="justify-start items-start gap-6 flex md:p-0 pt-3">
                 <div class="w-6 h-6 relative">
-                    <icon-social-outline-instagram
+                    <IconSocialInstagram
                         class="text-black dark:text-white hover:text-slate-700 hover:dark:text-slate-300 cursor-pointer"
                         @click="pageChanged('home')"
                     />
                 </div>
                 <div class="w-6 h-6 relative">
-                    <icon-social-outline-youtube
+                    <IconSocialYoutube
                         class="text-black dark:text-white hover:text-slate-700 hover:dark:text-slate-300 cursor-pointer"
                         @click="pageChanged('home')"
                     />
                 </div>
                 <div class="w-6 h-6 relative">
-                    <icon-social-outline-facebook
+                    <IconSocialFacebook
                         class="text-black dark:text-white hover:text-slate-700 hover:dark:text-slate-300 cursor-pointer"
                         @click="pageChanged('home')"
                     />
