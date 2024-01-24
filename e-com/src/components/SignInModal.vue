@@ -1,5 +1,9 @@
 <script lang="ts" setup>
 import { computed, ref } from "vue";
+import { UserModel } from "@/types";
+import { authService } from "@/api/firebase/auth-service";
+import { userModule } from "@/store";
+import { User } from "firebase/auth";
 
 const props = defineProps<{
     value: boolean;
@@ -7,11 +11,15 @@ const props = defineProps<{
 const emit = defineEmits<{
     (event: "input", value: boolean): void;
 }>();
+
 const input = (value: boolean) => emit("input", value);
 
-const email = ref("");
-const userName = ref("");
-const password = ref("");
+const userModel = ref<UserModel>({
+    userName: "",
+    email: "",
+    password: "",
+});
+
 const hasAccount = ref(false);
 const rememberMe = ref(false);
 const agreeCondition = ref(false);
@@ -25,6 +33,24 @@ const suffixIconClick = () => {
 };
 const redirectToPrivacyPolicy = () => {};
 const redirectToTermsOfUse = () => {};
+const userAction = async () => (hasAccount.value ? getUser() : createUser());
+
+const setCurrentUser = (user: User) => userModule().setCurrentUser(user);
+const createUser = async () => {
+    const res = await authService.createUser(userModel.value);
+    if (!res?.user) return;
+
+    setCurrentUser(res.user);
+    input(false);
+};
+
+const getUser = async () => {
+    const res = await authService.signIn(userModel.value);
+    if (!res) return;
+
+    setCurrentUser(res.user);
+    input(false);
+};
 
 const title = computed(() => (hasAccount.value ? "Login" : "Sing Up"));
 const hintButton = computed(() => (!hasAccount.value ? "Login" : "Sing Up"));
@@ -55,7 +81,7 @@ const toggleHasAccount = () => (hasAccount.value = !hasAccount.value);
                 style="background: var(--body-bg)"
             >
                 <div class="items-center justify-center px-8 flex flex-1 md:order-1 order-2 my-5">
-                    <FormKit type="form">
+                    <FormKit :actions="false" type="form" @submit="userAction">
                         <div
                             class="text-black dark:text-white text-4xl font-medium mb-3 flex justify-center"
                         >
@@ -74,13 +100,13 @@ const toggleHasAccount = () => (hasAccount.value = !hasAccount.value);
                         </div>
                         <FormKit
                             v-if="!hasAccount"
-                            v-model="userName"
+                            v-model="userModel.userName"
                             class="w-full"
                             label="Username"
                             placeholder="Username"
                         />
                         <FormKit
-                            v-model="email"
+                            v-model="userModel.email"
                             class="w-full"
                             label="Email"
                             placeholder="test@gmail.com"
@@ -88,7 +114,7 @@ const toggleHasAccount = () => (hasAccount.value = !hasAccount.value);
                             validation="required|email|ends_with:.com"
                         />
                         <FormKit
-                            v-model="password"
+                            v-model="userModel.password"
                             :suffix-icon="passwordInputSuffixIcon"
                             :type="passwordInputType"
                             class="w-full"
@@ -144,7 +170,7 @@ const toggleHasAccount = () => (hasAccount.value = !hasAccount.value);
                                     :label="title"
                                     class="p-3 w-full text-primary-50 dark:text-white border border-surface-200 dark:border-surface-600"
                                     type="submit"
-                                    @submit="input(false)"
+                                    @submit="userAction"
                                 />
                             </div>
                         </template>

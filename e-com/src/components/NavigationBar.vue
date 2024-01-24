@@ -1,11 +1,11 @@
 <script lang="ts" setup>
+import { computed, onMounted, ref, watch } from "vue";
+import { router } from "@/router";
 import IconSearch from "./icons/IconSearch.vue";
 import IconUser from "@/components/icons/IconUser.vue";
 import ThemeSwitcher from "./ThemeSwitcher.vue";
-import { onMounted, ref, watch } from "vue";
-import { SelectModel } from "../types";
+import { SelectModel } from "@/types";
 import IconEcom from "./icons/IconEcom.vue";
-import { router } from "../router";
 import SignInModal from "@/components/SignInModal.vue";
 import IconSocialOutlineFacebook from "@/components/icons/IconSocialOutlineFacebook.vue";
 import IconSocialOutlineInstagram from "@/components/icons/IconSocialOutlineİnstagram.vue";
@@ -14,6 +14,7 @@ import IconShoppingBag from "@/components/icons/IconShoppingBag.vue";
 import IconHeartLine from "@/components/icons/IconHeartLine.vue";
 import IconMenuLineHorizontal from "@/components/icons/IconMenuLineHorizontal.vue";
 import IconCloseLine from "@/components/icons/IconCloseLine.vue";
+import { userModule } from "@/store";
 
 const pageList = ref<SelectModel[]>([
     {
@@ -40,6 +41,7 @@ const pageList = ref<SelectModel[]>([
 const signInModalVisible = ref(false);
 const isNavbarCollapsed = ref(true);
 const searchTerm = ref("");
+
 const willPush = (page: string): boolean => router.currentRoute.value.name !== page;
 const setIsNavbarCollapsed = () => (isNavbarCollapsed.value = true);
 const pageChanged = (page: string) => {
@@ -66,6 +68,8 @@ const handleOutsideClick = (event: MouseEvent) => {
     if (!hasNavbar) setIsNavbarCollapsed();
 };
 onMounted(() => window.addEventListener("click", handleOutsideClick));
+const currentUser = computed(() => userModule().currentUser);
+
 watch(
     () => router.currentRoute.value,
     () => {
@@ -175,17 +179,21 @@ watch(
                         </div>
                     </div>
                 </div>
-                <div class="md:w-6 md:h-6 relative flex-1 md:my-2" title="SignUp">
-                    <IconUser
+                <div
+                    class="md:h-6 relative flex-1 md:my-2"
+                    title="SignUp"
+                    @click="toggleSignInModal(true)"
+                >
+                    <div
                         class="dark:text-white text-black hover:opacity-50 hover:cursor-pointer md:flex hidden"
-                        title="Sign Up"
-                        @click="toggleSignInModal(true)"
-                    />
+                    >
+                        <IconUser title="Sign Up" @click="toggleSignInModal(true)" />
+                        <span>{{ currentUser?.displayName }}</span>
+                    </div>
                     <div class="md:hidden flex align-items-center gap-2">
                         <Button
                             class="p-3 w-full text-primary-50 dark:text-white border border-surface-200 dark:border-surface-600 mb-3"
                             label="Sign Up"
-                            @click="toggleSignInModal(true)"
                         />
                     </div>
                 </div>

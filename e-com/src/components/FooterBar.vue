@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { SelectModel } from "../types";
+import { SelectModel } from "@/types/select-model";
 import { ref, watch } from "vue";
 import IconEcom from "./icons/IconEcom.vue";
 import IconSocialOutlineInstagram from "./icons/IconSocialOutlineİnstagram.vue";

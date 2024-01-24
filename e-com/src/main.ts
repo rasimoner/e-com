@@ -46,13 +46,16 @@ import ToastService from "primevue/toastservice";
 import Calendar from "primevue/calendar";
 import Card from "primevue/card";
 import { PrimePreset } from "./primePreset";
+import { createPinia } from "pinia";
 
 const app = createApp(App);
+const pinia = createPinia();
 
 app.use(plugin, defaultConfig(config));
 app.use(PrimeVue, { unstyled: true, pt: PrimePreset });
 app.use(ToastService);
 app.use(router);
+app.use(pinia);
 
 app.directive("styleclass", StyleClass);
 
