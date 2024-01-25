@@ -17,6 +17,7 @@ import IconClose from "@/components/icons/IconClose.vue";
 import { userModule } from "@/store";
 import { useToast } from "primevue/usetoast";
 import { ToastMessageOptions } from "primevue/toast";
+import CartSidebar from "@/components/CartSidebar.vue";
 
 const toast = useToast();
 const pageList = ref<SelectModel[]>([
@@ -57,13 +58,13 @@ const pageChanged = (page: string) => {
 const showToast = (options: ToastMessageOptions) => toast.add(options);
 
 const toggleWishListModal = (value: boolean) => (isWishListModalVisible.value = value);
-const toggleCartModal = (value: boolean) => (isCartModalVisible.value = value);
+const toggleCartModal = (value: boolean) => {
+    isCartModalVisible.value = value;
+    isNavbarCollapsed.value = true;
+};
 const openInstagram = () => {};
 const openFacebook = () => {};
 const openYoutube = () => {};
-const show = () => {
-    toast.add({ severity: "info", summary: "Info", detail: "Message Content", life: 3000 });
-};
 
 const toggleSignInModal = (value: boolean) => {
     isSignInModalVisible.value = value;
@@ -233,6 +234,11 @@ watch(
                 v-model:value="isSignInModalVisible"
                 @input="toggleSignInModal(false)"
                 @onShowToast="showToast"
+            />
+            <CartSidebar
+                v-if="isCartModalVisible"
+                v-model:value="isCartModalVisible"
+                @input="toggleCartModal(false)"
             />
             <Toast />
         </div>
