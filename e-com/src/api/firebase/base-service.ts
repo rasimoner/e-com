@@ -9,11 +9,10 @@ import {
     updateDoc,
     where,
 } from "firebase/firestore";
-import { db } from "./index";
+import { BaseRequest, db } from "@/api";
 import { v4 as uuidv4 } from "uuid";
-import { BaseRequest } from "./base-request";
 
-export class BaseService {
+class BaseService {
     addApiCollection = async <T extends { id?: string }>(
         model: T,
         path: string,
@@ -25,7 +24,7 @@ export class BaseService {
         return true;
     };
     updateApiData = async <T extends { id?: string }>(req: BaseRequest<T>): Promise<void> => {
-        if (!req.model.id) {
+        if (!req.model?.id) {
             const id: string = uuidv4();
             return await setDoc(doc(db, req.path, id), { ...req.model, id });
         }
@@ -33,7 +32,7 @@ export class BaseService {
         return await updateDoc(doc(db, req.path, req.model.id), req.model);
     };
     getDataFromApi = async <T extends { id?: string }>(req: BaseRequest<T>): Promise<T[]> => {
-        if (req.model.id) {
+        if (req.model?.id) {
             const res = await getDoc(doc(db, req.path, req.model.id ?? ""));
             return <T[]>[res.data()];
         }

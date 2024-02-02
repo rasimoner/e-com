@@ -5,9 +5,8 @@ import {
     updateProfile,
     User,
 } from "firebase/auth";
-import { UserModel } from "@/types/user";
-import { FirebaseStorageError } from "./firebase-storage-error";
-import { firebaseApp } from "./index";
+import { UserModel } from "@/types";
+import { firebaseApp, FirebaseStorageError } from "@/api";
 
 class AuthService {
     currentAuth = () => getAuth(firebaseApp);

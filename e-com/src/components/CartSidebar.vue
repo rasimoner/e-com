@@ -1,8 +1,9 @@
 <script lang="ts" setup>
 import IconClose from "@/components/icons/IconClose.vue";
 import CartItem from "@/components/CartItem.vue";
-import { computed, ref } from "vue";
-import { CartItemModel } from "@types/cart-item";
+import { computed, onMounted, ref } from "vue";
+import { CartItemModel } from "@/types";
+import { productService } from "@/api";
 
 defineProps<{
     value: boolean;
@@ -11,54 +12,29 @@ const emit = defineEmits<{
     (event: "input", value: boolean): void;
 }>();
 
-const items = ref<CartItemModel[]>([
-    {
-        name: "Chair 1.3",
-        price: 69,
-        total: 69,
-        picture: "https://via.placeholder.com/80x96",
-        color: "Coral",
-        count: 1,
-    },
-    {
-        name: "Furniture",
-        price: 999,
-        total: 999,
-        picture: "https://via.placeholder.com/80x96",
-        color: "Green",
-        count: 1,
-    },
-    {
-        name: "Glass",
-        price: 10,
-        total: 10,
-        picture: "https://via.placeholder.com/80x96",
-        color: "Blue",
-        count: 1,
-    },
-    {
-        name: "Lamb",
-        price: 99,
-        total: 99,
-        picture: "https://via.placeholder.com/80x96",
-        color: "White",
-        count: 1,
-    },
-    {
-        name: "Tv Unit",
-        price: 11,
-        total: 22,
-        picture: "https://via.placeholder.com/80x96",
-        color: "Black",
-        count: 2,
-    },
-]);
+const items = ref<CartItemModel[]>([]);
 
 const goToCartPage = () => {};
 const removeItem = (value: CartItemModel) => {
-    console.log(value);
     items.value = items.value.filter((cart) => cart !== value);
 };
+
+const getData = async () => {
+    const res = await productService().getProducts();
+    items.value =
+        res?.map(
+            (x, i) =>
+                <CartItemModel>{
+                    ...x,
+                    total: 0,
+                    count: 0,
+                    color: x.colors?.[i] ?? x.colors?.[0] ?? "",
+                },
+        ) ?? [];
+};
+onMounted(async () => {
+    await getData();
+});
 
 const onItemChanged = (value: CartItemModel) => {
     items.value.forEach((item) => {
@@ -68,12 +44,13 @@ const onItemChanged = (value: CartItemModel) => {
     });
 };
 
-const input = (value: boolean) => emit("input", value);
 const total = computed(() => {
     let result = 0;
     items.value?.forEach((x) => (result += x.total));
     return result;
 });
+
+const input = (value: boolean) => emit("input", value);
 </script>
 
 <template>
@@ -112,7 +89,7 @@ const total = computed(() => {
                 <div class="flex flex-col mx-3">
                     <div class="flex justify-between">
                         <div class="font-normal">Subtotal</div>
-                        <div class="font-bold">99 TL</div>
+                        <div class="font-bold">{{ total }} TL</div>
                     </div>
                     <hr class="my-3 border-t-1 surface-border" />
                     <div class="flex justify-between">
