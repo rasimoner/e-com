@@ -20,5 +20,13 @@
   "affected": {
     "defaultBase": "master"
   },
-  "nxCloudAccessToken": "ODJiOGRhMWUtODU5NC00ZDE2LWJmNWEtNGJmZDU5Y2VlNTdkfHJlYWQtd3JpdGU="
+  "nxCloudAccessToken": "ODJiOGRhMWUtODU5NC00ZDE2LWJmNWEtNGJmZDU5Y2VlNTdkfHJlYWQtd3JpdGU=",
+  "plugins": [
+    {
+      "plugin": "@nx/eslint/plugin",
+      "options": {
+        "targetName": "lint"
+      }
+    }
+  ]
 }

@@ -18,7 +18,6 @@ export default defineConfig({
     plugins: [
         dts({
             insertTypesEntry: true,
-            logDiagnostics: true,
             exclude: ["src/**/__tests__/*.ts", "src/**/*.spec.ts"],
         }),
         swc.vite(),
