@@ -33,6 +33,7 @@
 - [x]  tailwind-css
 - [x]  primeVue (biklinik ui paketi incelemesi)
 - [ ]  pinia
+- [x]  monorepo (nx)
 - [x]  ESLint
 - [x]  prettier
 - [ ]  vite, vitest (unit test ler yazılacak)
