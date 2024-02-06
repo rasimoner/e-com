@@ -17,12 +17,16 @@
   },
   "private": true,
   "devDependencies": {
+    "@nx/eslint": "18.0.1",
     "@nx/js": "18.0.1",
+    "@nx/vite": "18.0.1",
+    "eslint": "~8.48.0",
     "nx": "18.0.1",
     "typescript": "^5.3.3"
   },
   "workspaces": [
     "packages/*",
-    "host"
-  ]
+    "apps/*"
+  ],
+  "dependencies": {}
 }
