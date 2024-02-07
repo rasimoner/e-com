@@ -1,0 +1,12 @@
+{
+  "targets": {
+    "build": {
+      "executor": "@nrwl/vite:build",
+      "options": {
+        "outputPath": "dist/host",
+        "tsConfig": "tsconfig.json",
+        "viteConfig": "vite.config.ts"
+      }
+    }
+  }
+}
