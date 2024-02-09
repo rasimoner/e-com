@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { computed, onMounted, ref, watch } from "vue";
-import { router } from "@router";
+import { router } from "@router/index";
 import IconSearch from "./icons/IconSearch.vue";
 import IconUser from "@components/icons/IconUser.vue";
 import ThemeSwitcher from "./ThemeSwitcher.vue";
@@ -18,6 +18,7 @@ import { useToast } from "primevue/usetoast";
 import { ToastMessageOptions } from "primevue/toast";
 import CartSidebar from "@components/CartSidebar.vue";
 import { SelectModel } from "@e-com/common";
+import { User } from "firebase/auth";
 
 const toast = useToast();
 const pageList = ref<SelectModel[]>([
@@ -84,7 +85,7 @@ const handleOutsideClick = (event: MouseEvent) => {
     if (!hasNavbar) setIsNavbarCollapsed();
 };
 onMounted(() => window.addEventListener("click", handleOutsideClick));
-const currentUser = computed(() => userModule().currentUser);
+const currentUser = computed((): User | null => userModule().currentUser);
 
 watch(
     () => router.currentRoute.value,

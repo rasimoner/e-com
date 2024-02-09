@@ -2,8 +2,8 @@
 import IconClose from "@components/icons/IconClose.vue";
 import CartItem from "@components/CartItem.vue";
 import { computed, onMounted, ref } from "vue";
-import { CartItemModel } from "@types";
-import { productService } from "@api";
+import { CartItemModel } from "@interfaces/cart-item";
+import { productService } from "@api/product";
 
 defineProps<{
     value: boolean;

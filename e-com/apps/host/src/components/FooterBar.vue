@@ -4,7 +4,7 @@ import IconEcom from "./icons/IconEcom.vue";
 import IconSocialInstagram from "@components/icons/IconSocialInstagram.vue";
 import IconSocialYoutube from "@components/icons/IconSocialYoutube.vue";
 import IconSocialFacebook from "@components/icons/IconSocialFacebook.vue";
-import { router } from "@router";
+import { router } from "@router/index";
 import { SelectModel } from "@e-com/common";
 
 const pageList = ref<SelectModel[]>([

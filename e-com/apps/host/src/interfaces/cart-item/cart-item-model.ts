@@ -1,4 +1,4 @@
-import { ProductModel } from "../../types/product";
+import { ProductModel } from "@interfaces/product";
 
 export interface CartItemModel extends Omit<ProductModel, "colors"> {
     color?: string;

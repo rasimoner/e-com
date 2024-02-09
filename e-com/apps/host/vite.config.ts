@@ -12,7 +12,7 @@ const config: UserConfig = {
             "@primePreset": resolve(__dirname, "src/primePreset/"),
             "@router": resolve(__dirname, "src/router/"),
             "@store": resolve(__dirname, "src/store/"),
-            "@types": resolve(__dirname, "src/types/"),
+            "@interfaces": resolve(__dirname, "src/interfaces/"),
         },
     },
 };

@@ -22,8 +22,8 @@
       "@store/*": [
         "src/store/*"
       ],
-      "@types/*": [
-        "src/types/*"
+      "@interfaces/*": [
+        "src/interfaces/*"
       ]
     },
     "esModuleInterop": true,
