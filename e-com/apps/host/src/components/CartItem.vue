@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import IconClose from "@/components/icons/IconClose.vue";
+import IconClose from "@components/icons/IconClose.vue";
 import { ref, watch } from "vue";
-import { CartItemModel, EnumProductCategory } from "@/types";
+import { CartItemModel, EnumProductCategory } from "@types";
 
 const props = defineProps<{
     cartItem: CartItemModel;
