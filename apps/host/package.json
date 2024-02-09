@@ -9,7 +9,6 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@e-com/common": "*",
     "@types/node": "^20.10.4",
     "@types/uuid": "^9.0.7",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
@@ -25,10 +24,8 @@
     "vite": "^5.0.5",
     "vue": "^3.4.5"
   },
-  "peerDependencies": {
-    "@e-com/common": "*"
-  },
   "dependencies": {
+    "@e-com/common": "*",
     "@formkit/icons": "^1.4.0",
     "@formkit/vue": "^1.4.0",
     "firebase": "^10.7.2",
