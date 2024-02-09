@@ -1,11 +1,12 @@
 {
   "targets": {
     "build": {
-      "executor": "@nrwl/vite:build",
+      "executor": "nx:run-script",
       "options": {
         "outputPath": "dist/host",
         "tsConfig": "tsconfig.json",
-        "viteConfig": "vite.config.ts"
+        "viteConfig": "vite.config.ts",
+        "script": "build"
       }
     }
   }

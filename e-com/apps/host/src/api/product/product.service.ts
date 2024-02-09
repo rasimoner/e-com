@@ -1,6 +1,5 @@
 import { baseService } from "@e-com/common";
-import { ProductModel } from "../../types/product/product-model";
-import { EnumProductCategory } from "../../types/product/product-category-enum";
+import { EnumProductCategory, ProductModel } from "@interfaces/product";
 
 class ProductService {
     readonly path = "product";
