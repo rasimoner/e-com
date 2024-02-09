@@ -8,6 +8,13 @@
         "viteConfig": "vite.config.ts",
         "script": "build"
       }
+    },
+    "configurations": {
+      "production": {
+        "before": [
+          "mkdir -p dist"
+        ]
+      }
     }
   }
 }
