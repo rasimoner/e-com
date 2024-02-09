@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "vite --host --port=5173 --strictPort",
     "build": "vite build",
-    "build:host": "npm install nx && nx build host --outDir=apps/host/dist",
     "preview": "vite preview"
   },
   "devDependencies": {
