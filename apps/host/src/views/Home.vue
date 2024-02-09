@@ -41,7 +41,7 @@ const toggleSignInModal = (value: boolean) => {
 <template>
     <div class="card flex">
         <div class="pt-4 flex flex-col">
-            test
+            test2
             <FormKit
                 help="Enter mail address"
                 label="email"
