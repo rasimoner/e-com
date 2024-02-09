@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "build": "nx run-many --target=build --parallel=5",
+    "build:host": "nx build host --outDir=apps/host/dist",
     "build:affected": "nx affected:build --base=HEAD --parallel=5",
     "build:packages": "nx run-many --target=build --exclude @e-com/host --parallel=5",
     "test": "nx run-many --target=test --parallel=5",
