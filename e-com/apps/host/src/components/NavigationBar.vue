@@ -1,22 +1,22 @@
 <script lang="ts" setup>
 import { computed, onMounted, ref, watch } from "vue";
-import { router } from "@/router";
+import { router } from "@router";
 import IconSearch from "./icons/IconSearch.vue";
-import IconUser from "@/components/icons/IconUser.vue";
+import IconUser from "@components/icons/IconUser.vue";
 import ThemeSwitcher from "./ThemeSwitcher.vue";
 import IconEcom from "./icons/IconEcom.vue";
-import SignInModal from "@/components/SignInModal.vue";
-import IconSocialFacebook from "@/components/icons/IconSocialFacebook.vue";
-import IconSocialInstagram from "@/components/icons/IconSocialInstagram.vue";
-import IconSocialYoutube from "@/components/icons/IconSocialYoutube.vue";
-import IconShoppingBag from "@/components/icons/IconShoppingBag.vue";
-import IconHeart from "@/components/icons/IconHeart.vue";
-import IconMenu from "@/components/icons/IconMenu.vue";
-import IconClose from "@/components/icons/IconClose.vue";
-import { userModule } from "@/store";
+import SignInModal from "@components/SignInModal.vue";
+import IconSocialFacebook from "@components/icons/IconSocialFacebook.vue";
+import IconSocialInstagram from "@components/icons/IconSocialInstagram.vue";
+import IconSocialYoutube from "@components/icons/IconSocialYoutube.vue";
+import IconShoppingBag from "@components/icons/IconShoppingBag.vue";
+import IconHeart from "@components/icons/IconHeart.vue";
+import IconMenu from "@components/icons/IconMenu.vue";
+import IconClose from "@components/icons/IconClose.vue";
+import { userModule } from "@store/user-module";
 import { useToast } from "primevue/usetoast";
 import { ToastMessageOptions } from "primevue/toast";
-import CartSidebar from "@/components/CartSidebar.vue";
+import CartSidebar from "@components/CartSidebar.vue";
 import { SelectModel } from "@e-com/common";
 
 const toast = useToast();

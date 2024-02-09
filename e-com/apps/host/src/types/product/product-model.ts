@@ -1,4 +1,4 @@
-import { EnumProductCategory } from "@/types";
+import { EnumProductCategory } from "../product";
 import { EntityModel } from "@e-com/common";
 
 export interface ProductModel extends EntityModel {

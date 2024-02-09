@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { AutoCompleteCompleteEvent, AutoCompleteItemSelectEvent } from "primevue/autocomplete";
 import { useToast } from "primevue/usetoast";
-import SignInModal from "@/components/SignInModal.vue";
+import SignInModal from "@components/SignInModal.vue";
 
 const value = ref("");
 const date = ref("");

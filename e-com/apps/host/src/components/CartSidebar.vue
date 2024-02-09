@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import IconClose from "@/components/icons/IconClose.vue";
-import CartItem from "@/components/CartItem.vue";
+import IconClose from "@components/icons/IconClose.vue";
+import CartItem from "@components/CartItem.vue";
 import { computed, onMounted, ref } from "vue";
-import { CartItemModel } from "@/types";
-import { productService } from "@/api";
+import { CartItemModel } from "@types";
+import { productService } from "@api";
 
 defineProps<{
     value: boolean;

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { computed, ref } from "vue";
-import { userModule } from "@/store";
+import { userModule } from "@store/user-module";
 import { User } from "firebase/auth";
 import { ToastMessageOptions } from "primevue/toast";
 import { authService, EnumToastSeverity, UserModel } from "@e-com/common";
