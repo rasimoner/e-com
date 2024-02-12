@@ -3,14 +3,19 @@
   "affected": {
     "defaultBase": "master"
   },
-  "targets": {
-    "build": {
-      "executor": "nx:run-script",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/nx-cloud",
       "options": {
-        "outputPath": "dist/host",
-        "tsConfig": "tsconfig.json",
-        "viteConfig": "vite.config.ts",
-        "script": "build"
+        "cacheableOperations": [
+          "build",
+          "preview",
+          "test",
+          "lint",
+          "lint:fix",
+          "start"
+        ],
+        "accessToken": "MTI0NTBmYjQtM2UzOC00ZmIwLTljOWMtMTU0NGY1NjA1MjcxfHJlYWQtd3JpdGU="
       }
     }
   },
