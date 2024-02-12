@@ -2,5 +2,15 @@
   "name": "@e-com/host",
   "tags": [
     "scope:@e-com/host"
-  ]
+  ],
+  "targets": {
+    "build": {
+      "options": {
+        "outputPath": "dist",
+        "tsConfig": "tsconfig.json",
+        "viteConfig": "vite.config.ts",
+        "script": "build"
+      }
+    }
+  }
 }
