@@ -1,47 +1,47 @@
 {
-  "name": "@e-com/common",
-  "version": "1.0.0",
-  "description": "Common",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "type": "module",
-  "exports": {
-    "import": "./dist/index.js",
-    "require": "./dist/index.umd.cjs"
-  },
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist/"
-  ],
-  "scripts": {
-    "dev": "nx serve --host --port=5173 --strictPort",
-    "build": "nx build",
-    "preview": "nx preview"
-  },
-  "devDependencies": {
-    "@types/node": "^20.10.4",
-    "rollup-plugin-peer-deps-external": "^2.2.4",
-    "@types/uuid": "^9.0.7",
-    "@typescript-eslint/eslint-plugin": "^6.14.0",
-    "@typescript-eslint/parser": "^6.14.0",
-    "@vitejs/plugin-vue": "^4.5.1",
-    "autoprefixer": "^10.4.16",
-    "eslint": "^8.55.0",
-    "eslint-plugin-vue": "^9.19.2",
-    "firebase": "^10.8.0",
-    "postcss": "^8.4.32",
-    "prettier": "^3.1.1",
-    "typescript": "^5.3.3",
-    "vite": "^5.0.5",
-    "vue": "^3.4.5",
-    "unplugin-swc": "^1.4.4",
-    "uuid": "^9.0.1",
-    "vite-plugin-dts": "^3.7.2"
-  },
-  "nx": {
-    "tags": [
-      "scope:@e-com/common"
+    "name": "@e-com/common",
+    "version": "1.0.0",
+    "description": "Common",
+    "main": "dist/index.js",
+    "module": "dist/index.js",
+    "type": "module",
+    "exports": {
+        "import": "./dist/index.js",
+        "require": "./dist/index.umd.cjs"
+    },
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist/"
     ],
-    "includedScripts": []
-  }
+    "scripts": {
+        "dev": "nx serve --host --port=5173 --strictPort",
+        "build": "nx build",
+        "preview": "nx preview"
+    },
+    "devDependencies": {
+        "@types/node": "^20.10.4",
+        "rollup-plugin-peer-deps-external": "^2.2.4",
+        "@types/uuid": "^9.0.7",
+        "@typescript-eslint/eslint-plugin": "^6.14.0",
+        "@typescript-eslint/parser": "^6.14.0",
+        "@vitejs/plugin-vue": "^4.5.1",
+        "autoprefixer": "^10.4.16",
+        "eslint": "^8.55.0",
+        "eslint-plugin-vue": "^9.19.2",
+        "firebase": "^10.8.0",
+        "postcss": "^8.4.32",
+        "prettier": "^3.1.1",
+        "typescript": "^5.3.3",
+        "vite": "^5.0.5",
+        "vue": "^3.4.5",
+        "unplugin-swc": "^1.4.4",
+        "uuid": "^9.0.1",
+        "vite-plugin-dts": "^3.7.2"
+    },
+    "nx": {
+        "tags": [
+            "scope:@e-com/common"
+        ],
+        "includedScripts": []
+    }
 }
