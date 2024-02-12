@@ -9,7 +9,7 @@
     "test:packages": "nx run-many --target=test --exclude @e-com/host --parallel=5",
     "lint": "nx run-many --target=lint --parallel=5",
     "lint:fix": "nx run-many --target=lint:fix",
-    "dev": "nx run @e-com/host:dev",
+    "dev": "nx run @e-com/host:serve",
     "preview": "nx run-many --target=preview",
     "codegen": "nx run-many --target=codegen",
     "graph": "nx graph",
