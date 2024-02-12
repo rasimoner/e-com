@@ -25,16 +25,6 @@
       "options": {
         "targetName": "lint"
       }
-    },
-    {
-      "plugin": "@nx/vite/plugin",
-      "options": {
-        "buildTargetName": "build",
-        "previewTargetName": "preview",
-        "testTargetName": "test",
-        "serveTargetName": "serve",
-        "serveStaticTargetName": "serve-static"
-      }
     }
   ],
   "nxCloudAccessToken": "MTI0NTBmYjQtM2UzOC00ZmIwLTljOWMtMTU0NGY1NjA1MjcxfHJlYWQtd3JpdGU="
