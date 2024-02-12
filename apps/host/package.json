@@ -34,10 +34,10 @@
     "tailwindcss": "^3.3.7",
     "typescript": "^5.3.3",
     "vite": "^5.0.5",
-    "vue": "^3.4.5"
+    "vue": "^3.4.5",
+    "@e-com/common": "*"
   },
   "dependencies": {
-    "@e-com/common": "*",
     "@formkit/icons": "^1.4.0",
     "@formkit/vue": "^1.4.0",
     "firebase": "^10.7.2",
@@ -54,6 +54,9 @@
     }
   },
   "nx": {
+    "tags": [
+      "scope:@e-com/host"
+    ],
     "includedScripts": []
   }
 }

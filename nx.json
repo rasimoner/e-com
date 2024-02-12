@@ -3,6 +3,22 @@
   "affected": {
     "defaultBase": "master"
   },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/nx-cloud",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "preview",
+          "test",
+          "lint",
+          "lint:fix",
+          "start"
+        ],
+        "accessToken": "MTI0NTBmYjQtM2UzOC00ZmIwLTljOWMtMTU0NGY1NjA1MjcxfHJlYWQtd3JpdGU="
+      }
+    }
+  },
   "plugins": [
     {
       "plugin": "@nx/eslint/plugin",
