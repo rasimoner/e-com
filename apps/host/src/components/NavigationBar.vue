@@ -198,7 +198,7 @@ watch(
                 </div>
                 <div
                     class="md:h-6 relative flex-1 md:my-2"
-                    title="SignUp"
+                    title="Sign Up"
                     @click="toggleSignInModal(true)"
                 >
                     <div
