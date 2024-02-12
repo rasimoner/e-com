@@ -17,8 +17,8 @@
   ],
   "scripts": {
     "dev": "nx run serve --host --port=5173",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "nx build",
+    "preview": "nx preview"
   },
   "devDependencies": {
     "@types/node": "^20.10.4",

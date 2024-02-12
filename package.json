@@ -21,6 +21,8 @@
     "@nx/js": "18.0.1",
     "@nx/vite": "^18.0.4",
     "@nx/web": "18.0.4",
+    "@nx/workspace": "^18.0.4",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
     "@swc/core": "^1.4.0",
     "@vitest/ui": "^1.0.4",
     "eslint": "~8.48.0",

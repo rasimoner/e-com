@@ -14,9 +14,9 @@
     "dist/"
   ],
   "scripts": {
-    "dev": "vite --host --port=5173 --strictPort",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev": "nx serve --host --port=5173 --strictPort",
+    "build": "nx build",
+    "preview": "nx preview"
   },
   "devDependencies": {
     "@types/node": "^20.10.4",
