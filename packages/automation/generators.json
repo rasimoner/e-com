@@ -1,0 +1,9 @@
+{
+  "generators": {
+    "vue-lib": {
+      "factory": "./src/generators/vue-lib/generator",
+      "schema": "./src/generators/vue-lib/schema.json",
+      "description": "vue-lib generator"
+    }
+  }
+}

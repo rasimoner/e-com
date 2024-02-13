@@ -1,0 +1,6 @@
+{
+  "name": "@<%= scope %>/<%= name %>",
+  "tags": [
+    "scope:@<%= scope %>/<%= name %>"
+  ]
+}
