@@ -24,7 +24,7 @@ const onDateChanged = () => {
 const itemSelected = (event: AutoCompleteItemSelectEvent) => {
     toast.add({
         severity: "success",
-        detail: `${event.value} seçildi`,
+        detail: `${event.value} seçildi!`,
         life: 1000,
     });
 };
