@@ -18,7 +18,7 @@ const signUp = () => alert("Need to add a new newsletter page");
                 <div
                     class="w-96 text-center text-black dark:text-slate-700 text-xl font-normal font-['Inter']"
                 >
-                    Sign up for deals, new products and promotions
+                    Sign up for deals, new products and promotions!
                 </div>
             </div>
             <div class="w-96 flex-col justify-center items-start gap-2 flex">
