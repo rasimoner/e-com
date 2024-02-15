@@ -55,6 +55,8 @@
     "apps/*"
   ],
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "^4.10.0"
+    "@rollup/rollup-linux-x64-gnu": "^4.10.0",
+    "@nx/nx-linux-x64-gnu": "18.0.1",
+    "@nx/nx-win32-x64-msvc": "18.0.1"
   }
 }
