@@ -32,7 +32,7 @@ const signUp = () => alert("Need to add a new newsletter page");
                         <div class="self-stretch justify-start items-start gap-2 inline-flex">
                             <FormKit
                                 v-model="email"
-                                placeholder="Email address"
+                                placeholder="Email"
                                 type="email"
                                 validation="required|email|ends_with:.com"
                             />
