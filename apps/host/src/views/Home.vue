@@ -3,6 +3,7 @@ import { ref } from "vue";
 import { AutoCompleteCompleteEvent, AutoCompleteItemSelectEvent } from "primevue/autocomplete";
 import { useToast } from "primevue/usetoast";
 import SignInModal from "@components/SignInModal.vue";
+import CategoryDataView from "@components/CategoryDataView.vue";
 
 const value = ref("");
 const date = ref("");
@@ -40,7 +41,8 @@ const toggleSignInModal = (value: boolean) => {
 
 <template>
     <div class="card flex">
-        <div class="pt-4 flex flex-col">
+        <CategoryDataView />
+        <div class="hidden pt-4 flex flex-col">
             <FormKit
                 help="Enter mail address"
                 label="email"
