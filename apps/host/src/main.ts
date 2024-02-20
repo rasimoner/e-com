@@ -45,6 +45,8 @@ import Toast from "primevue/toast";
 import ToastService from "primevue/toastservice";
 import Calendar from "primevue/calendar";
 import Card from "primevue/card";
+import Rating from "primevue/rating";
+import DataView from "primevue/dataview";
 import { PrimePreset } from "./primePreset";
 import { createPinia } from "pinia";
 
@@ -92,5 +94,7 @@ app.component("TabView", TabView);
 app.component("Tag", Tag);
 app.component("TieredMenu", TieredMenu);
 app.component("Toast", Toast);
+app.component("Rating", Rating);
+app.component("DataView", DataView);
 
 app.mount("#app");

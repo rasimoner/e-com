@@ -1,4 +1,4 @@
-import { EnumProductCategory } from "../product";
+import { EnumInventoryStatus, EnumProductCategory } from "../product";
 import { EntityModel } from "@e-com/common";
 
 export interface ProductModel extends EntityModel {
@@ -7,4 +7,6 @@ export interface ProductModel extends EntityModel {
     price: number;
     colors?: string[];
     categoryId: EnumProductCategory;
+    inventoryStatus?: EnumInventoryStatus;
+    rating?: number;
 }

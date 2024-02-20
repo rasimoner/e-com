@@ -35,6 +35,8 @@ import chip from "./chip";
 import progressbar from "./progressbar";
 import ripple from "./ripple";
 import tag from "./tag";
+import rating from "./rating";
+import dataview from "./dataview";
 
 export const PrimePreset = {
     global,
@@ -76,6 +78,8 @@ export const PrimePreset = {
     chip,
     progressbar,
     tag,
+    rating,
+    dataview,
 };
 
 export default { PrimePreset };
