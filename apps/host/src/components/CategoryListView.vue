@@ -34,9 +34,12 @@ watch(
             <div class="text-slate-400 text-center">No Data Found</div>
         </template>
         <template #header>
-            <div class="flex"></div>
-            <div class="flex justify-end">
-                <DataViewLayoutOptions v-model="layout" />
+            <div class="flex">
+                <slot name="filter-button" />
+                <span class="flex-1" />
+                <span class="justify-end">
+                    <DataViewLayoutOptions v-model="layout" />
+                </span>
             </div>
         </template>
 

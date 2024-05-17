@@ -16,8 +16,15 @@ const onCategoryChanged = (value: number) => (categoryId.value = value);
             <UiBreadcrumb />
         </template>
         <template #left>
-            <CategoryList @category-changed="onCategoryChanged" />
+            <CategoryList
+                class="hidden md:flex md:flex-col pt-10"
+                @category-changed="onCategoryChanged"
+            />
         </template>
-        <CategoryListView :category-id="categoryId" class="flex-1" />
+        <CategoryListView :category-id="categoryId" class="flex-1">
+            <template #filter-button>
+                <CategoryList class="flex md:hidden" @category-changed="onCategoryChanged" />
+            </template>
+        </CategoryListView>
     </ui-page-layout>
 </template>
