@@ -7,8 +7,10 @@ import Newsletter from "@components/Newsletter.vue";
 
 <template>
     <NavigationBar />
-    <span class="mt-60" />
-    <RouterView />
-    <Newsletter />
-    <FooterBar />
+    <RouterView class="pt-16" />
+    <div class="flex flex-col">
+        <div class="flex-1" />
+        <Newsletter />
+        <FooterBar />
+    </div>
 </template>

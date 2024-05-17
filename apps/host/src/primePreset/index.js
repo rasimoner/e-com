@@ -37,6 +37,8 @@ import ripple from "./ripple";
 import tag from "./tag";
 import rating from "./rating";
 import dataview from "./dataview";
+import breadcrumb from "./breadcrumb";
+import dataviewlayoutoptions from "./dataview-layout";
 
 export const PrimePreset = {
     global,
@@ -80,6 +82,8 @@ export const PrimePreset = {
     tag,
     rating,
     dataview,
+    breadcrumb,
+    dataviewlayoutoptions,
 };
 
 export default { PrimePreset };

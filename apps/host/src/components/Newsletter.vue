@@ -6,12 +6,12 @@ const signUp = () => alert("Need to add a new newsletter page");
 </script>
 
 <template>
-    <div class="card w-full flex">
+    <div class="card w-full flex max-h-72 items-end justify-end">
         <img alt="lamb" class="min-w-[10em] md:block hidden" src="../assets/images/lamb.png" />
         <div class="flex-col justify-center items-center gap-8 inline-flex w-full">
             <div class="flex-col justify-start items-center gap-2 flex">
                 <div
-                    class="w-96 text-center text-black dark:text-slate-300 text-5xl font-medium font-['Poppins'] uppercase"
+                    class="w-96 text-center text-black dark:text-slate-300 text-3xl font-medium font-['Poppins'] uppercase"
                 >
                     Join Our Newsletter
                 </div>

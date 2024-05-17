@@ -29,7 +29,7 @@ const getData = async () => {
                     total: 0,
                     count: 0,
                     color: x.colors?.[i] ?? x.colors?.[0] ?? "",
-                },
+                }
         ) ?? [];
 };
 onMounted(async () => {
@@ -56,7 +56,7 @@ const input = (value: boolean) => emit("input", value);
 <template>
     <Sidebar :visible="value" block-scroll position="right" @update:visible="input">
         <template #container="{ closeCallback }">
-            <div class="flex flex-column">
+            <div class="flex flex-col">
                 <div class="flex align-middle justify-between px-4 pt-3 flex-shrink-0 w-full">
                     <span class="font-semibold text-2xl text-primary flex-1">Cart</span>
                     <Button

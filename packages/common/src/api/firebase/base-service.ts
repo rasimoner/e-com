@@ -16,7 +16,7 @@ import { BaseRequest } from "./base-request";
 class BaseService {
     addApiCollection = async <T extends { id?: string }>(
         model: T,
-        path: string,
+        path: string
     ): Promise<boolean> => {
         if (!model.id) model.id = uuidv4();
         const docRef = await addDoc(collection(db, path), model);
@@ -35,15 +35,15 @@ class BaseService {
     getDataFromApi = async <T extends { id?: string }>(req: BaseRequest<T>): Promise<T[]> => {
         if (req.model?.id) {
             const res = await getDoc(doc(db, req.path, req.model.id ?? ""));
-            return <T[]>[res.data()];
+            return res.data() ? <T[]>[res.data()] : [];
         }
 
         const filters = this.createQueryFilters(req);
         const querySnapshot = await getDocs(
             query(
                 collection(db, req.path),
-                ...Object.entries(filters).map(([key, value]) => where(key, "==", value)),
-            ),
+                ...Object.entries(filters).map(([key, value]) => where(key, "==", value))
+            )
         );
 
         return querySnapshot.docs.map((doc) => doc.data() as T);
