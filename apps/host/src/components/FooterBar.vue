@@ -36,7 +36,7 @@ const pageChanged = (page: string) => {
 const setCurrentPageIsActive = () => {
     pageList.value?.forEach(
         (page: SelectModel) =>
-            (page.selected = page.value?.toString() === router.currentRoute.value.name),
+            (page.selected = page.value?.toString() === router.currentRoute.value.name)
     );
 };
 watch(
@@ -44,13 +44,13 @@ watch(
     () => {
         setCurrentPageIsActive();
     },
-    { immediate: true },
+    { immediate: true }
 );
 </script>
 
 <template>
     <div
-        class="w-full h-full pt-20 pb-8 flex-col justify-end items-start gap-10 inline-flex bottom-0 left-0 card"
+        class="w-full pt-20 pb-8 flex-col justify-end items-start gap-10 inline-flex bottom-0 left-0 card"
     >
         <div class="w-full justify-center items-center">
             <div class="justify-between items-center md:flex gap-5">
