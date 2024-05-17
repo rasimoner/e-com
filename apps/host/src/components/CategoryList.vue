@@ -8,6 +8,7 @@ const emit = defineEmits<{
 }>();
 
 const categories = ref<SelectModel<number>[]>([]);
+const selectedCategory = ref(0);
 
 const getCategories = async () => {
     const res = await categoryService().getCategories();
@@ -31,29 +32,41 @@ onMounted(async () => {
     await getCategories();
 });
 
-const onCategoryChanged = (model: SelectModel<number>) => {
-    if (!model.value) return;
+const onCategoryChanged = (input: number) => {
+    if (!input) return;
 
     categories.value.forEach((item) => {
-        item.selected = model.value === item.value;
+        item.selected = input === item.value;
     });
-    categoryChanged(model.value);
+    categoryChanged(input);
 };
 const categoryChanged = (value: number) => emit("categoryChanged", value);
 </script>
 
 <template>
-    <div v-for="item in categories">
-        <div
-            class="cursor-pointer p-2"
-            :class="
-                item.selected
-                    ? 'text-black dark:text-white'
-                    : 'text-slate-400 hover:text-slate-700 hover:dark:text-slate-300'
-            "
-            @click="onCategoryChanged(item)"
-        >
-            {{ item.text }}
+    <div>
+        <Dropdown
+            v-model="selectedCategory"
+            @update:model-value="onCategoryChanged"
+            :options="categories"
+            filter
+            optionLabel="text"
+            optionValue="value"
+            placeholder="Select a Category"
+            class="w-full md:hidden"
+        />
+        <div v-for="item in categories" class="hidden md:flex">
+            <div
+                class="cursor-pointer p-2"
+                :class="
+                    item.selected
+                        ? 'text-black dark:text-white'
+                        : 'text-slate-400 hover:text-slate-700 hover:dark:text-slate-300'
+                "
+                @click="onCategoryChanged(item.value)"
+            >
+                {{ item.text }}
+            </div>
         </div>
     </div>
 </template>
