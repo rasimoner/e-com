@@ -11,4 +11,9 @@ export const routes: RouteRecordRaw[] = [
         name: "shop",
         component: () => import("../views/CategoryPage.vue"),
     },
+    {
+        path: "/product",
+        name: "product",
+        component: () => import("../views/ProductPage.vue"),
+    },
 ];

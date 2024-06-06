@@ -50,6 +50,7 @@ import DataView from "primevue/dataview";
 import Breadcrumb from "primevue/breadcrumb";
 import DataViewLayoutOptions from "primevue/dataviewlayoutoptions";
 import Paginator from "primevue/paginator";
+import Galleria from "primevue/galleria";
 
 import { PrimePreset } from "./primePreset";
 import { createPinia } from "pinia";
@@ -103,5 +104,6 @@ app.component("DataView", DataView);
 app.component("Breadcrumb", Breadcrumb);
 app.component("DataViewLayoutOptions", DataViewLayoutOptions);
 app.component("Paginator", Paginator);
+app.component("Galleria", Galleria);
 
 app.mount("#app");
