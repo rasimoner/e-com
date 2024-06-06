@@ -53,7 +53,7 @@ const getSeverity = computed(() => (product: ProductModel): SelectModel<string> 
 });
 </script>
 <template>
-    <DataView :layout="layout" :value="products">
+    <DataView :layout="layout" :value="products" :data-key="layout">
         <template #header>
             <div class="flex justify-end">
                 <DataViewLayoutOptions v-model="layout" />

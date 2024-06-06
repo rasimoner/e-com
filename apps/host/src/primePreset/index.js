@@ -39,6 +39,7 @@ import rating from "./rating";
 import dataview from "./dataview";
 import breadcrumb from "./breadcrumb";
 import dataviewlayoutoptions from "./dataview-layout";
+import paginator from "./paginator";
 
 export const PrimePreset = {
     global,
@@ -84,6 +85,7 @@ export const PrimePreset = {
     dataview,
     breadcrumb,
     dataviewlayoutoptions,
+    paginator,
 };
 
 export default { PrimePreset };

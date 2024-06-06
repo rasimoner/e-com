@@ -2,7 +2,7 @@
 import DataView from "primevue/dataview";
 import { ref, watch } from "vue";
 import DataViewLayoutOptions from "primevue/dataviewlayoutoptions";
-import { ProductModel } from "@interfaces/product";
+import { EnumInventoryStatus, ProductModel } from "@interfaces/product";
 import { productService } from "@api/product";
 import Rating from "primevue/rating";
 
@@ -29,7 +29,14 @@ watch(
 </script>
 
 <template>
-    <DataView :layout="layout" :value="products">
+    <DataView
+        :layout="layout"
+        :value="products"
+        paginator
+        :rows="5"
+        :data-key="layout"
+        class="mb-3"
+    >
         <template #empty>
             <div class="text-slate-400 text-center">No Data Found</div>
         </template>
@@ -44,14 +51,67 @@ watch(
         </template>
 
         <template #list="slotProps">
-            <div class="flex flex-wrap">d1{{ slotProps.items?.[0] }}</div>
+            <div class="flex flex-wrap">
+                <div v-for="(item, index) in slotProps.items" :key="index" class="w-full">
+                    <div
+                        class="flex flex-col md:flex-row md:items-center px-0 md:px-3 py-3 gap-3"
+                        :class="{
+                            'border-t border-surface-200 dark:border-surface-700': index !== 0,
+                        }"
+                    >
+                        <div class="hidden md:w-[10rem] relative">
+                            <img
+                                class="block mx-auto rounded-md w-full"
+                                :src="item.picture"
+                                :alt="item.name"
+                            />
+                        </div>
+                        <div
+                            class="flex flex-col md:flex-row justify-between md:items-center flex-1 gap-4"
+                        >
+                            <div
+                                class="flex flex-row md:flex-col justify-between items-start gap-2"
+                            >
+                                <div
+                                    class="text-lg font-medium text-surface-900 dark:text-surface-0 mt-2"
+                                >
+                                    {{ item.name }}
+                                </div>
+                                <Rating
+                                    class="mt-2"
+                                    :cancel="false"
+                                    :modelValue="item.rating"
+                                    readonly
+                                />
+                            </div>
+                            <div class="flex flex-col items-end gap-5">
+                                <span
+                                    class="text-xl font-semibold text-surface-900 dark:text-surface-0"
+                                    >${{ item.price }}</span
+                                >
+                                <div class="flex flex-row-reverse md:flex-row gap-2">
+                                    <Button icon="pi pi-heart" outlined />
+                                    <Button
+                                        icon="pi pi-shopping-cart"
+                                        label="Buy Now"
+                                        :disabled="
+                                            item.inventoryStatus === EnumInventoryStatus.OutOfStock
+                                        "
+                                        class="flex-auto md:flex-initial white-space-nowrap"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </template>
         <template #grid="slotProps">
             <div class="flex flex-wrap">
                 <div
                     v-for="(item, index) in slotProps.items"
                     :key="index"
-                    class="w-full p-3 sm:w-6/12 xl:w-4/12"
+                    class="w-full px-0 md:px-3 py-3 md:w-4/12"
                 >
                     <div
                         class="border border-surface-200 dark:border-surface-700 bg-surface-0 dark:bg-surface-800 rounded"
