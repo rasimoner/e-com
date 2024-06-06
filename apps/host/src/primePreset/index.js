@@ -40,6 +40,7 @@ import dataview from "./dataview";
 import breadcrumb from "./breadcrumb";
 import dataviewlayoutoptions from "./dataview-layout";
 import paginator from "./paginator";
+import galleria from "./galleria";
 
 export const PrimePreset = {
     global,
@@ -86,6 +87,7 @@ export const PrimePreset = {
     breadcrumb,
     dataviewlayoutoptions,
     paginator,
+    galleria,
 };
 
 export default { PrimePreset };
