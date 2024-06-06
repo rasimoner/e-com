@@ -33,6 +33,7 @@ watch(
         :layout="layout"
         :value="products"
         paginator
+        :always-show-paginator="false"
         :rows="5"
         :data-key="layout"
         class="mb-3"
