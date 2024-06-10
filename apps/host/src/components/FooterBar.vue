@@ -22,6 +22,7 @@ const pageList = ref<SelectModel[]>([
         text: "Product",
         value: "product",
         selected: false,
+        disabled: true,
     },
     {
         text: "Contact Us",
@@ -76,12 +77,17 @@ watch(
                 >
                     <li
                         v-for="page in pageList"
-                        :class="page.selected ? 'border-black' : 'border-slate-400'"
+                        :class="{
+                            'border-black': page.selected,
+                            'border-slate-400': !page.selected,
+                            'hover:text-slate-700 hover:dark:text-slate-300': !page.disabled,
+                        }"
                         class="justify-start items-center gap-0.5 my-6 flex"
                     >
                         <button
                             :class="page.selected ? 'text-black dark:text-white' : 'text-slate-400'"
-                            class="text-base font-normal font-['Inter'] leading-normal hover:text-slate-700 hover:dark:text-slate-300"
+                            :disabled="page.disabled"
+                            class="text-base font-normal font-['Inter'] leading-normal"
                             type="button"
                             @click="pageChanged(`${page.value}`)"
                         >

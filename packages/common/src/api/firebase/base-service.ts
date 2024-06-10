@@ -46,7 +46,7 @@ class BaseService {
             )
         );
 
-        return querySnapshot.docs.map((doc) => doc.data() as T);
+        return querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() } as T));
     };
 
     createQueryFilters = <T extends { id?: string }>(req: BaseRequest<T>) => {

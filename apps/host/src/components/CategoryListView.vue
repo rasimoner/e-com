@@ -5,6 +5,7 @@ import DataViewLayoutOptions from "primevue/dataviewlayoutoptions";
 import { EnumInventoryStatus, ProductModel } from "@interfaces/product";
 import { productService } from "@api/product";
 import Rating from "primevue/rating";
+import { router } from "@router/index";
 
 const props = defineProps<{
     categoryId: number;
@@ -26,6 +27,9 @@ watch(
     },
     { immediate: true }
 );
+
+const itemClick = (item: ProductModel) =>
+    router.push({ name: "product", params: { productId: item.id } });
 </script>
 
 <template>
@@ -55,7 +59,7 @@ watch(
             <div class="flex flex-wrap">
                 <div v-for="(item, index) in slotProps.items" :key="index" class="w-full">
                     <div
-                        class="flex flex-col md:flex-row md:items-center px-0 md:px-3 py-3 gap-3"
+                        class="flex flex-col md:flex-row md:items-center px-0 md:px-3 py-3 gap-3 cursor-pointer md:cursor-default"
                         :class="{
                             'border-t border-surface-200 dark:border-surface-700': index !== 0,
                         }"
@@ -65,6 +69,7 @@ watch(
                                 class="block mx-auto rounded-md w-full"
                                 :src="item.picture"
                                 :alt="item.name"
+                                @click="itemClick(item)"
                             />
                         </div>
                         <div
@@ -99,6 +104,7 @@ watch(
                                             item.inventoryStatus === EnumInventoryStatus.OutOfStock
                                         "
                                         class="flex-auto md:flex-initial white-space-nowrap"
+                                        @click="itemClick(item)"
                                     />
                                 </div>
                             </div>
@@ -115,13 +121,14 @@ watch(
                     class="w-full px-0 md:px-3 py-3 md:w-4/12"
                 >
                     <div
-                        class="border border-surface-200 dark:border-surface-700 bg-surface-0 dark:bg-surface-800 rounded"
+                        class="border border-surface-200 dark:border-surface-700 bg-surface-0 dark:bg-surface-800 rounded cursor-default md:cursor-pointer"
                     >
                         <div class="flex flex-col gap-3">
                             <img
                                 :alt="item.name"
                                 :src="item.picture"
                                 class="w-full shadow-md rounded"
+                                @click="itemClick(item)"
                             />
                             <div class="mx-2">
                                 <Rating :cancel="false" :modelValue="item.rating" readonly />
