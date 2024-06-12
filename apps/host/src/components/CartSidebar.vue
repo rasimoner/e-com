@@ -21,6 +21,8 @@ const removeItem = (value: CartItemModel) => {
 
 const getData = async () => {
     const res = await productService().getProducts();
+    // TODO
+    // color alanının set edilmesi incelenecek.
     items.value =
         res?.map(
             (x, i) =>
@@ -28,7 +30,7 @@ const getData = async () => {
                     ...x,
                     total: 0,
                     count: 0,
-                    color: x.colors?.[i] ?? x.colors?.[0] ?? "",
+                    // color: x.colors?.[i] ?? x.colors?.[0] ?? "",
                 }
         ) ?? [];
 };

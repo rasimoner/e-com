@@ -6,7 +6,6 @@ export interface ProductModel extends EntityModel {
     picture: string;
     price: number;
     originalPrice: number;
-    colors?: string[];
     categoryId: EnumProductCategory;
     inventoryStatus?: EnumInventoryStatus;
     rating?: number;

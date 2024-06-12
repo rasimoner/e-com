@@ -1,9 +1,9 @@
-import { EnumPhotoReferenceKey } from "@interfaces/photo/photo-reference-key.enum";
+import { EnumRelationReferenceKey } from "@interfaces/photo/relation-reference-key.enum";
 import { EntityModel } from "@e-com/common";
 
 export interface PhotoModel extends EntityModel {
     referenceId: string;
-    referenceKey: EnumPhotoReferenceKey;
+    referenceType: EnumRelationReferenceKey;
     imageSrc: string;
     thumbnailSrc: string;
     alt: string;
