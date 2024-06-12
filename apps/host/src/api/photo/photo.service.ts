@@ -1,12 +1,12 @@
 import { baseService } from "@e-com/common";
-import { EnumPhotoReferenceKey, PhotoModel } from "@interfaces/photo";
+import { EnumRelationReferenceKey, PhotoModel } from "@interfaces/photo";
 
 class PhotoService {
     readonly path = "photo";
     addCollection = async () => {
         const model: PhotoModel = {
             referenceId: "",
-            referenceKey: EnumPhotoReferenceKey.Product,
+            referenceType: EnumRelationReferenceKey.Product,
             imageSrc: "",
             thumbnailSrc: "",
             alt: "",
