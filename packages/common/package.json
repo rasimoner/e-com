@@ -19,6 +19,7 @@
         "preview": "nx preview"
     },
     "devDependencies": {
+        "@supabase/supabase-js": "^2.44.0",
         "@types/node": "18.16.9",
         "@types/uuid": "^9.0.7",
         "@typescript-eslint/eslint-plugin": "^6.14.0",
