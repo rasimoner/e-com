@@ -11,9 +11,9 @@ import {
 } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 import { db } from "./config";
-import { BaseRequest } from "./base-request";
+import { BaseRequest } from "@e-com/common";
 
-class BaseService {
+class FirebaseService {
     addApiCollection = async <T extends { id?: string }>(
         model: T,
         path: string
@@ -61,4 +61,4 @@ class BaseService {
     };
 }
 
-export const baseService = new BaseService();
+export const firebaseService = new FirebaseService();

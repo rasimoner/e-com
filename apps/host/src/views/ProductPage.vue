@@ -6,7 +6,7 @@ import ProductGalleria from "@components/ProductGalleria.vue";
 import { PhotoModel } from "@interfaces/photo/photo-model";
 import Rating from "primevue/rating";
 import { EnumProductCategory, ProductModel } from "@interfaces/product";
-import { productService } from "@api/product";
+import { productService } from "@api/firebase";
 import { useRoute } from "vue-router";
 import { ReviewModel } from "@interfaces/review";
 import { Timestamp } from "firebase/firestore";

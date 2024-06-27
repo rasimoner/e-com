@@ -3,7 +3,8 @@ import { computed, ref } from "vue";
 import { userModule } from "@store/user-module";
 import { User } from "firebase/auth";
 import { ToastMessageOptions } from "primevue/toast";
-import { authService, EnumToastSeverity, UserModel } from "@e-com/common";
+import { EnumToastSeverity } from "@e-com/common";
+import { authService, UserModel } from "@e-com/api-firebase";
 
 defineProps<{
     value: boolean;
@@ -68,7 +69,7 @@ const getUser = async () => {
 const title = computed(() => (hasAccount.value ? "Login" : "Sing Up"));
 const hintButton = computed(() => (!hasAccount.value ? "Login" : "Sing Up"));
 const hint = computed(() =>
-    hasAccount.value ? "Don’t have an account yet" : "Already have an account?",
+    hasAccount.value ? "Don’t have an account yet" : "Already have an account?"
 );
 
 const toggleHasAccount = () => (hasAccount.value = !hasAccount.value);

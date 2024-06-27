@@ -3,7 +3,7 @@ import DataView from "primevue/dataview";
 import { ref, watch } from "vue";
 import DataViewLayoutOptions from "primevue/dataviewlayoutoptions";
 import { EnumInventoryStatus, ProductModel } from "@interfaces/product";
-import { productService } from "@api/product";
+import { productService } from "@api/firebase";
 import Rating from "primevue/rating";
 import { router } from "@router/index";
 

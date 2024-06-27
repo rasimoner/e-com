@@ -10,7 +10,7 @@ export default defineConfig({
   build: {
     sourcemap: true,
     lib: {
-      entry: resolvePath('src/category-model.ts'),
+      entry: resolvePath('src/index.ts'),
       name: 'index',
       fileName: 'index',
     },
