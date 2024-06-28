@@ -3,7 +3,7 @@ import { routes } from "./routes";
 import { userModule } from "@store/user-module";
 
 const router = createRouter({
-    history: createWebHistory(""),
+    history: createWebHistory(),
     routes,
 });
 router.beforeEach(async () => {
