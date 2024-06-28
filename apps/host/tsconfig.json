@@ -8,6 +8,7 @@
       "node"
     ],
     "baseUrl": ".",
+    "rootDir": ".",
     "paths": {
       "@api/*": [
         "src/api/*"
