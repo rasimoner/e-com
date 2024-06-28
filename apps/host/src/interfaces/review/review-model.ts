@@ -1,9 +1,8 @@
-import { EntityModel } from "@e-com/common";
-import { Timestamp } from "firebase/firestore";
+import { EntityModel, TimestampModel } from "@e-com/common";
 
 export interface ReviewModel extends EntityModel {
     comment: string;
-    createdAt: Timestamp;
+    createdAt: TimestampModel;
     parentId?: string;
     productId: string;
     rate: number;

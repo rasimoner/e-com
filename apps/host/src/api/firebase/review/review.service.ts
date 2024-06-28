@@ -1,6 +1,5 @@
 import { firebaseService } from "@e-com/api-firebase";
 import { ReviewModel } from "@interfaces/review";
-import { Timestamp } from "firebase/firestore";
 
 class ReviewService {
     readonly path = "reviews";

@@ -1,4 +1,4 @@
-import { supabaseService } from "@e-com/common";
+import { supabaseService } from "@e-com/api-supabase";
 import { ColorModel } from "@interfaces/color";
 
 class ColorService {

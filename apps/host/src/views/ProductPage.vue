@@ -9,8 +9,7 @@ import { EnumProductCategory, ProductModel } from "@interfaces/product";
 import { productService } from "@api/firebase";
 import { useRoute } from "vue-router";
 import { ReviewModel } from "@interfaces/review";
-import { Timestamp } from "firebase/firestore";
-import { dateUtils } from "@e-com/common";
+import { dateUtils, TimestampModel } from "@e-com/common";
 
 const images = ref<PhotoModel[]>([]);
 const reviews = ref<ReviewModel[]>([]);
@@ -22,7 +21,9 @@ const localModel = ref<ProductModel>({
     originalPrice: 0,
 });
 
-const reviewDate = computed(() => (date: Timestamp) => dateUtils.dateTimeFormatFromTimestamp(date));
+const reviewDate = computed(
+    () => (date: TimestampModel) => dateUtils.dateTimeFormatFromTimestamp(date)
+);
 const subReviews = computed(() => (id: string) => reviews.value?.filter((x) => x.parentId === id));
 
 const getNewProduct = async (productId: string) => {

@@ -1,5 +1,5 @@
 import { supabase } from "./supabase";
-import { BaseRequest } from "../../types";
+import { BaseRequest } from "@e-com/common";
 
 class SupabaseService {
     getDataFromApi = async <T extends { id?: string }>(req: BaseRequest<T>): Promise<T[]> => {

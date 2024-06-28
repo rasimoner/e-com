@@ -46,7 +46,7 @@ const toggleSignInModal = (value: boolean) => {
         <template #header>
             <UiBreadcrumb class="my-3" />
         </template>
-        <div class="card">
+        <div class="card w-full">
             <CategoryDataView />
             <div class="hidden pt-4 flex flex-col">
                 <FormKit
