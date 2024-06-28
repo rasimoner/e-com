@@ -1,4 +1,4 @@
-import { baseService } from "@e-com/common";
+import { firebaseService } from "@e-com/api-firebase";
 import { EnumProductCategory, ProductModel } from "@interfaces/product";
 import { PhotoModel } from "@interfaces/photo";
 import { ReviewModel } from "@interfaces/review";
@@ -13,18 +13,18 @@ class ProductService {
             price: 0,
             originalPrice: 0,
         };
-        return baseService.addApiCollection(model, this.path);
+        return firebaseService.addApiCollection(model, this.path);
     };
     saveProduct = async (model: ProductModel) =>
-        await baseService.updateApiData({ model, path: this.path });
+        await firebaseService.updateApiData({ model, path: this.path });
 
     getProducts = async (model?: ProductModel): Promise<ProductModel[]> => {
         // const q = query(collection(db, this.path), where());
-        return await baseService.getDataFromApi({ model, path: this.path });
+        return await firebaseService.getDataFromApi({ model, path: this.path });
     };
 
     getProductPhotos = async (documentKey: string, model?: PhotoModel): Promise<PhotoModel[]> => {
-        return await baseService.getDataFromApi({
+        return await firebaseService.getDataFromApi({
             model,
             path: `${this.path}/${documentKey}/photos`,
         });
@@ -34,7 +34,7 @@ class ProductService {
         documentKey: string,
         model?: ReviewModel
     ): Promise<ReviewModel[]> => {
-        return await baseService.getDataFromApi({
+        return await firebaseService.getDataFromApi({
             model,
             path: `${this.path}/${documentKey}/reviews`,
         });

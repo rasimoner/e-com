@@ -1,4 +1,4 @@
-import { baseService } from "@e-com/common";
+import { firebaseService } from "@e-com/api-firebase";
 import { EnumRelationReferenceKey, PhotoModel } from "@interfaces/photo";
 
 class PhotoService {
@@ -12,14 +12,14 @@ class PhotoService {
             alt: "",
             title: "",
         };
-        return baseService.addApiCollection(model, this.path);
+        return firebaseService.addApiCollection(model, this.path);
     };
     savePhoto = async (model: PhotoModel) =>
-        await baseService.updateApiData({ model, path: this.path });
+        await firebaseService.updateApiData({ model, path: this.path });
 
     getPhotos = async (model?: PhotoModel): Promise<PhotoModel[]> => {
         // const q = query(collection(db, this.path), where());
-        return await baseService.getDataFromApi({ model, path: this.path });
+        return await firebaseService.getDataFromApi({ model, path: this.path });
     };
 }
 

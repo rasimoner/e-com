@@ -1,13 +1,12 @@
 <script lang="ts" setup>
 import { computed, onMounted, ref } from "vue";
-import { productService } from "@api/product/product.service";
+import { categoryService, productService } from "@api/firebase";
 import { EnumInventoryStatus, ProductModel } from "@interfaces/product";
 import DataView from "primevue/dataview";
 import Tag from "primevue/tag";
 import Rating from "primevue/rating";
 import DataViewLayoutOptions from "primevue/dataviewlayoutoptions";
 import { CategoryModel } from "@interfaces/category";
-import { categoryService } from "@api/category";
 import { SelectModel } from "@e-com/common";
 
 const products = ref<ProductModel[]>([]);

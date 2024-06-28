@@ -1,4 +1,4 @@
-import { baseService } from "@e-com/common";
+import { firebaseService } from "@e-com/api-firebase";
 import { CategoryModel } from "@interfaces/category";
 
 class CategoryService {
@@ -8,14 +8,14 @@ class CategoryService {
             categoryName: "",
             categoryValue: 0,
         };
-        return baseService.addApiCollection(model, this.path);
+        return firebaseService.addApiCollection(model, this.path);
     };
     saveCategory = async (model: CategoryModel) =>
-        await baseService.updateApiData({ model, path: this.path });
+        await firebaseService.updateApiData({ model, path: this.path });
 
     getCategories = async (model?: CategoryModel): Promise<CategoryModel[]> => {
         // const q = query(collection(db, this.path), where());
-        return await baseService.getDataFromApi({ model, path: this.path });
+        return await firebaseService.getDataFromApi({ model, path: this.path });
     };
 }
 

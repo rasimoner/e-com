@@ -1,6 +1,5 @@
-import { baseService } from "@e-com/common";
+import { firebaseService } from "@e-com/api-firebase";
 import { ReviewModel } from "@interfaces/review";
-import { Timestamp } from "firebase/firestore";
 
 class ReviewService {
     readonly path = "reviews";
@@ -12,13 +11,13 @@ class ReviewService {
             rate: 0,
             user: "",
         };
-        return baseService.addApiCollection(model, this.path);
+        return firebaseService.addApiCollection(model, this.path);
     };
     saveReview = async (model: ReviewModel) =>
-        await baseService.updateApiData({ model, path: this.path });
+        await firebaseService.updateApiData({ model, path: this.path });
 
     getReviews = async (model?: ReviewModel): Promise<ReviewModel[]> =>
-        await baseService.getDataFromApi({ model, path: this.path });
+        await firebaseService.getDataFromApi({ model, path: this.path });
 }
 
 export const reviewService = () => new ReviewService();

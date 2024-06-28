@@ -1,4 +1,4 @@
-import { EntityModel } from "../entity-model";
+import { EntityModel } from "@e-com/common";
 
 export interface UserModel extends EntityModel {
     userName: string;

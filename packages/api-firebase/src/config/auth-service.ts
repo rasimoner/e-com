@@ -5,7 +5,7 @@ import {
     updateProfile,
     User,
 } from "firebase/auth";
-import { UserModel } from "../../types";
+import { UserModel } from "../types";
 import { firebaseApp } from "./config";
 import { FirebaseStorageError } from "./firebase-storage-error";
 
@@ -17,7 +17,7 @@ class AuthService {
             const userCredential = await createUserWithEmailAndPassword(
                 this.currentAuth(),
                 model.email,
-                model.password,
+                model.password
             );
             const user = userCredential.user;
 
@@ -45,7 +45,7 @@ class AuthService {
             return await signInWithEmailAndPassword(
                 this.currentAuth(),
                 model.email,
-                model.password,
+                model.password
             );
         } catch (e) {
             const error = e as FirebaseStorageError;

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { SelectModel } from "@e-com/common";
 import { onMounted, ref } from "vue";
-import { categoryService } from "@api/category";
+import { categoryService } from "@api/firebase";
 
 const emit = defineEmits<{
     (event: "categoryChanged", value: number): void;

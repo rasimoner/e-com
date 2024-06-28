@@ -1,1 +1,1 @@
-export * from "./category-model";
+export type { CategoryModel } from "./category-model";

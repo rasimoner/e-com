@@ -1,7 +1,7 @@
 {
-    "name": "@e-com/common",
+    "name": "@e-com/api-firebase",
     "version": "1.0.0",
-    "description": "Common",
+    "description": "firebase db",
     "main": "dist/index.js",
     "module": "dist/index.js",
     "type": "module",
@@ -19,7 +19,9 @@
         "preview": "nx preview"
     },
     "devDependencies": {
+        "@e-com/common": "*",
         "@types/node": "18.16.9",
+        "rollup-plugin-peer-deps-external": "^2.2.4",
         "@types/uuid": "^9.0.7",
         "@typescript-eslint/eslint-plugin": "^6.14.0",
         "@typescript-eslint/parser": "^6.14.0",
@@ -27,23 +29,17 @@
         "autoprefixer": "^10.4.16",
         "eslint": "~8.48.0",
         "eslint-plugin-vue": "^9.19.2",
+        "firebase": "^10.8.0",
         "postcss": "^8.4.32",
         "prettier": "^2.6.2",
-        "rollup-plugin-peer-deps-external": "^2.2.4",
         "typescript": "^5.3.3",
+        "vite": "^5.0.5",
+        "vue": "^3.4.5",
         "unplugin-swc": "^1.4.4",
         "uuid": "^9.0.1",
-        "vite": "^5.0.5",
-        "vite-plugin-dts": "^3.7.2",
-        "vue": "^3.4.5"
+        "vite-plugin-dts": "^3.7.2"
     },
     "nx": {
-        "tags": [
-            "scope:@e-com/common"
-        ],
         "includedScripts": []
-    },
-    "dependencies": {
-        "nx-cloud": "16.0.4"
     }
 }
