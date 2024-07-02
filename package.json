@@ -9,7 +9,7 @@
     "test:packages": "nx run-many --target=test --exclude @e-com/host --parallel=5",
     "lint": "nx run-many --target=lint --parallel=5",
     "lint:fix": "nx run-many --target=lint:fix",
-    "dev": "nx run @e-com/host:serve --host --port=5173",
+    "dev": "nx run @e-com/host:serve --host --open --port=5173",
     "preview": "nx run-many --target=preview",
     "codegen": "nx run-many --target=codegen",
     "graph": "nx graph",
@@ -48,7 +48,7 @@
     "ts-node": "10.9.1",
     "tslib": "^2.3.0",
     "typescript": "^5.3.3",
-    "vite": "~5.0.0",
+    "vite": "^5.2.6",
     "vitest": "^1.0.4"
   },
   "workspaces": [
