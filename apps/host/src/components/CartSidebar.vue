@@ -3,7 +3,7 @@ import IconClose from "@components/icons/IconClose.vue";
 import CartItem from "@components/CartItem.vue";
 import { computed, onMounted, ref } from "vue";
 import { CartItemModel } from "@interfaces/cart-item";
-import { productService } from "@api/firebase";
+import { productService } from "@api/supabase";
 
 defineProps<{
     value: boolean;
