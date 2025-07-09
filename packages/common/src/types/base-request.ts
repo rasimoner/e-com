@@ -1,6 +1,6 @@
-import { EntityModel } from "./index";
+import { DeepPartial, EntityModel } from "./index";
 
 export interface BaseRequest<T extends EntityModel> {
-    model?: T;
+    model?: DeepPartial<T>;
     path: string;
 }

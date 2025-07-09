@@ -24,19 +24,32 @@ const localModel = ref<ProductModel>({
 const reviewDate = computed(
     () => (date: TimestampModel) => dateUtils.dateTimeFormatFromTimestamp(date)
 );
-const subReviews = computed(() => (id: string) => reviews.value?.filter((x) => x.parentId === id));
+const subReviews = computed(
+    () => (id: string) => reviews.value?.filter((x) => x.parentId === id) ?? []
+);
+const avatarLabel = computed(() => (user: string) => {
+    const nameParts = user.trim().split(/\s+/);
+    let result = nameParts.map((part) => part.charAt(0).toUpperCase()).join("");
+
+    const lastPart = nameParts[nameParts.length - 1];
+    if (!isNaN(Number(lastPart))) result = result.slice(0, -1) + lastPart;
+
+    return result;
+});
 
 const getNewProduct = async (productId: string) => {
     const reqModel = { id: productId } as ProductModel;
     const res = await productService().getProducts(reqModel);
 
-    localModel.value = res?.[0] ?? {
-        name: "",
-        price: 0,
-        picture: "",
-        categoryId: EnumProductCategory.Other,
-        description: "",
-    };
+    localModel.value =
+        res?.[0] ??
+        <ProductModel>{
+            name: "",
+            price: 0,
+            picture: "",
+            categoryId: EnumProductCategory.Other,
+            description: "",
+        };
 };
 
 const getProductPhotos = async (productId: string) => {
@@ -46,7 +59,7 @@ const getProductPhotos = async (productId: string) => {
 
 const getProductReviews = async (productId: string) => {
     const res = await productService().getProductReviews(productId);
-    reviews.value = res ?? [];
+    reviews.value = res?.toSorted((a, b) => a.createdAt - b.createdAt) ?? [];
 };
 
 watch(
@@ -98,23 +111,51 @@ watch(
                     {{ reviews?.length ?? 0 }} Reviews
                 </div>
                 <div v-for="(item, i) in reviews" :key="i" class="p-2">
-                    <div v-if="!item.parentId">
-                        <div class="font-bold text-black dark:text-white">{{ item.user }}</div>
-                        <Rating class="mt-2" :cancel="false" :modelValue="item.rate" readonly />
-                        <div>{{ item.comment }}</div>
-                        <div>{{ reviewDate(item.createdAt) }}</div>
+                    <div v-if="!item.parentId" class="flex border-t pt-1">
+                        <Avatar
+                            :label="avatarLabel(item.user)"
+                            size="xlarge"
+                            shape="circle"
+                            class="mr-2"
+                        />
+                        <div>
+                            <div class="font-bold text-black dark:text-white">{{ item.user }}</div>
+                            <Rating class="mt-2" :cancel="false" :modelValue="item.rate" readonly />
+                            <div>{{ item.comment }}</div>
+                            <div class="text-xs text-gray-500 dark:text-gray-400">
+                                {{ reviewDate(item.createdAt) }}
+                            </div>
+                        </div>
                     </div>
-                    <div
-                        v-for="(child, index) in subReviews(item.id)"
-                        v-if="!!item.id && !!subReviews?.length"
-                        class="border-l-2 p-2 m-4"
-                        :key="`${index}_${item.id}`"
-                    >
-                        <div class="font-bold text-black dark:text-white">{{ child.user }}</div>
-                        <Rating class="mt-2" :cancel="false" :modelValue="child.rate" readonly />
-                        <div>{{ child.comment }}</div>
-                        <div>{{ reviewDate(child.createdAt) }}</div>
-                    </div>
+                    <template v-if="!!item?.id && !!subReviews(item?.id ?? '')?.length">
+                        <div
+                            v-for="(child, index) in subReviews(item?.id ?? '')"
+                            class="p-2 px-5 m-4 flex"
+                            :key="`${index}_${item.id}`"
+                        >
+                            <Avatar
+                                size="normal"
+                                shape="circle"
+                                class="mr-2"
+                                :label="avatarLabel(child.user)"
+                            />
+                            <div>
+                                <div class="font-bold text-black dark:text-white">
+                                    {{ child.user }}
+                                </div>
+                                <Rating
+                                    class="mt-2"
+                                    :cancel="false"
+                                    :modelValue="child.rate"
+                                    readonly
+                                />
+                                <div>{{ child.comment }}</div>
+                                <div class="text-xs text-gray-500 dark:text-gray-400">
+                                    {{ reviewDate(child.createdAt) }}
+                                </div>
+                            </div>
+                        </div>
+                    </template>
                 </div>
             </div>
         </div>

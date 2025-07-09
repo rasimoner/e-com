@@ -4,3 +4,4 @@ export * from "./category";
 export * from "./photo";
 export * from "./review";
 export * from "./color";
+export * from "./lookup";
